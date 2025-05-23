@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,6 +62,13 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				etherion: {
+					dark: "#0f1324",
+					darkBlue: "#171d36",
+					blue: "#0027c1",
+					border: "#2e3a6b",
+					text: "#8d9ace"
 				}
 			},
 			borderRadius: {
