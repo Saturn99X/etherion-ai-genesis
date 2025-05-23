@@ -1,17 +1,16 @@
-
-import { Robot, Gear, ChartLine } from "lucide-react";
+import { Bot, Settings, ChartLine } from "lucide-react";
 
 const ServicesSection = () => {
   const services = [
     {
       title: "Process Automation",
       description: "Automate repetitive tasks and workflows to free up your team's time and resources.",
-      icon: Robot
+      icon: Bot
     },
     {
       title: "Custom AI Development",
       description: "Develop custom AI solutions tailored to your specific business needs and challenges.",
-      icon: Gear
+      icon: Settings
     },
     {
       title: "Performance Optimization",
