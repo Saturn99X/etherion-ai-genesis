@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 
 const Header = () => {
@@ -8,7 +9,7 @@ const Header = () => {
           <img 
             src="/lovable-uploads/1a13ce9e-c60e-4209-b8a6-0dd938528a33.png" 
             alt="Etherion Logo" 
-            className="w-full h-full object-contain"
+            className="w-full h-full object-contain rounded-lg"
           />
         </div>
         <h2 className="text-white text-lg font-bold leading-tight tracking-[-0.015em]">Etherion</h2>
