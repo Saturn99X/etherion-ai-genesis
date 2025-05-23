@@ -1,4 +1,5 @@
 import { Bot, Settings, ChartLine } from "lucide-react";
+import GlowingBorder from "./GlowingBorder";
 
 const ServicesSection = () => {
   const services = [
@@ -33,15 +34,17 @@ const ServicesSection = () => {
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
         {services.map((service, index) => (
-          <div key={index} className="flex flex-1 gap-3 rounded-lg border border-etherion-border bg-etherion-darkBlue p-4 flex-col">
-            <div className="text-white">
-              <service.icon size={24} />
+          <GlowingBorder key={index}>
+            <div className="flex flex-1 gap-3 border border-etherion-border p-4 flex-col">
+              <div className="text-white">
+                <service.icon size={24} />
+              </div>
+              <div className="flex flex-col gap-1">
+                <h2 className="text-white text-base font-bold leading-tight">{service.title}</h2>
+                <p className="text-etherion-text text-sm font-normal leading-normal">{service.description}</p>
+              </div>
             </div>
-            <div className="flex flex-col gap-1">
-              <h2 className="text-white text-base font-bold leading-tight">{service.title}</h2>
-              <p className="text-etherion-text text-sm font-normal leading-normal">{service.description}</p>
-            </div>
-          </div>
+          </GlowingBorder>
         ))}
       </div>
     </div>
