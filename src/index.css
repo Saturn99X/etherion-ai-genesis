@@ -105,3 +105,57 @@
     font-family: 'Space Grotesk', 'Noto Sans', sans-serif;
   }
 }
+
+.animated-gradient-noise {
+  background: linear-gradient(
+    -45deg,
+    #0020c2, /* cobalt blue */
+    #ff0038, /* carmine red */
+    pink,
+    #7600bc
+  );
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  position: relative; /* Needed for pseudo-element noise */
+  overflow: hidden; /* Ensures noise pseudo-element doesn't overflow if it's larger */
+}
+
+/* Basic animation */
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* For noise - using a pseudo-element with a generated data URI for a subtle noise pattern */
+.animated-gradient-noise::after {
+  content: '';
+  position: absolute;
+  top: -50%; /* Cover the entire area, even when oversized for tiling */
+  left: -50%;
+  width: 200%; /* Oversize to ensure coverage and tiling */
+  height: 200%;
+  background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIj48ZmlsdGVyIGlkPSJub2lzZSI+PGZlVHVyYnVsZW5jZSB0eXBlPSJmcmFjdGFsTm9pc2UiIGJhc2VGcmVxdWVuY3k9IjAuNjUiIG51bU9jdGF2ZXM9IjMiIHN0aXRjaFRpbGVzPSJzdGl0Y2giLz48L2ZpbHRlcj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWx0ZXI9InVybCgibm9pc2UpIiBvcGFjaXR5PSIwLjEiLz48L3N2Zz4='); /* Example subtle SVG noise, opacity controlled by SVG itself or ::after opacity */
+  animation: noiseAnimation 2s steps(2) infinite; /* Optional: animate noise position slightly */
+  pointer-events: none; /* Make sure it doesn't interfere with content interaction */
+}
+
+@keyframes noiseAnimation {
+  0% { transform: translate(0,0); }
+  10% { transform: translate(-5%,-5%); }
+  20% { transform: translate(-10%,5%); }
+  30% { transform: translate(5%,-10%); }
+  40% { transform: translate(-5%,15%); }
+  50% { transform: translate(-10%,5%); }
+  60% { transform: translate(15%,0); }
+  70% { transform: translate(0,10%); }
+  80% { transform: translate(-15%,0); }
+  90% { transform: translate(10%,5%); }
+  100% { transform: translate(5%,0); }
+}
