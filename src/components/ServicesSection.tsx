@@ -32,15 +32,15 @@ const ServicesSection = () => {
           We offer a range of AI automation services to help businesses of all sizes streamline their operations and achieve their goals.
         </p>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+      <div className="grid grid-cols-1 gap-8 max-w-2xl mx-auto py-8">
         {services.map((service, index) => (
-          <GlowingBorder key={index}>
-            <div className="flex flex-1 gap-3 border border-etherion-border p-4 flex-col">
+          <GlowingBorder key={index} className={`rounded-2xl w-full md:w-4/5 ${index % 2 === 0 ? 'md:justify-self-start' : 'md:justify-self-end'}`}>
+            <div className="flex flex-1 gap-4 p-6 flex-col bg-slate-800/50 backdrop-blur-lg border border-slate-600/40 rounded-2xl shadow-xl h-full">
               <div className="text-white">
-                <service.icon size={24} />
+                <service.icon size={28} /> {/* Increased icon size slightly */}
               </div>
-              <div className="flex flex-col gap-1">
-                <h2 className="text-white text-base font-bold leading-tight">{service.title}</h2>
+              <div className="flex flex-col gap-2">
+                <h2 className="text-white text-lg font-bold leading-tight">{service.title}</h2> {/* Increased title size */}
                 <p className="text-etherion-text text-sm font-normal leading-normal">{service.description}</p>
               </div>
             </div>

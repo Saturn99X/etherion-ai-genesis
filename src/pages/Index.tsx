@@ -17,7 +17,6 @@ const Index = () => {
           <div className="layout-content-container flex flex-col max-w-[960px] flex-1">
             <HeroSection />
             <ServicesSection />
-            <CaseStudiesSection />
             <CTASection />
           </div>
         </div>
