@@ -5,19 +5,26 @@ const Footer = () => {
   return (
     <footer className="flex justify-center">
       <div className="flex max-w-[960px] flex-1 flex-col">
-        <div className="flex flex-col gap-6 px-5 py-10 text-center @container">
+        <div className="flex flex-col gap-6 px-5 py-10 @container">
           
           <div className="flex flex-wrap justify-center gap-4">
-            <a href="#" aria-label="Twitter">
+            <a href="https://web.facebook.com/profile.php?id=61575994394450" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
               <div className="text-etherion-text">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256">
-                  <path
-                    d="M247.39,68.94A8,8,0,0,0,240,64H209.57A48.66,48.66,0,0,0,168.1,40a46.91,46.91,0,0,0-33.75,13.7A47.9,47.9,0,0,0,120,88v6.09C79.74,83.47,46.81,50.72,46.46,50.37a8,8,0,0,0-13.65,4.92c-4.31,47.79,9.57,79.77,22,98.18a110.93,110.93,0,0,0,21.88,24.2c-15.23,17.53-39.21,26.74-39.47,26.84a8,8,0,0,0-3.85,11.93c.75,1.12,3.75,5.05,11.08,8.72C53.51,229.7,65.48,232,80,232c70.67,0,129.72-54.42,135.75-124.44l29.91-29.9A8,8,0,0,0,247.39,68.94Zm-45,29.41a8,8,0,0,0-2.32,5.14C196,166.58,143.28,216,80,216c-10.56,0-18-1.4-23.22-3.08,11.51-6.25,27.56-17,37.88-32.48A8,8,0,0,0,92,169.08c-.47-.27-43.91-26.34-44-96,16,13,45.25,33.17,78.67,38.79A8,8,0,0,0,136,104V88a32,32,0,0,1,9.6-22.92A30.94,30.94,0,0,1,167.9,56c12.66.16,24.49,7.88,29.44,19.21A8,8,0,0,0,204.67,80h16Z"
-                  ></path>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
                 </svg>
               </div>
             </a>
-            <a href="#" aria-label="LinkedIn">
+            <a href="https://instagram.com" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+              <div className="text-etherion-text">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                  <line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line>
+                </svg>
+              </div>
+            </a>
+            <a href="https://www.linkedin.com/company/107378760/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
               <div className="text-etherion-text">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256">
                   <path
@@ -27,7 +34,18 @@ const Footer = () => {
               </div>
             </a>
           </div>
-          <p className="text-etherion-text text-base font-normal leading-normal">© {new Date().getFullYear()} Etherion. All rights reserved.</p>
+          <div className="flex flex-row justify-between items-center w-full px-5">
+            <a href="mailto:contact@etherionai.com" className="text-etherion-text text-base font-normal leading-normal hover:text-etherion-blue transition-colors flex items-center gap-2">
+              <span className="flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+                contact@etherionai.com
+              </span>
+            </a>
+            <p className="text-etherion-text text-base font-normal leading-normal">© {new Date().getFullYear()} Etherion. All rights reserved.</p>
+          </div>
         </div>
       </div>
     </footer>
