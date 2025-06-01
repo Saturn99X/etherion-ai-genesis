@@ -33,26 +33,42 @@ export function ThemeProvider({
   useEffect(() => {
     const root = window.document.documentElement;
 
-    root.classList.remove('light', 'dark');
+    // Function to apply the current theme or system theme
+    const applyTheme = (currentTheme: Theme) => {
+      root.classList.remove('light', 'dark');
 
-    if (theme === 'system') {
-      const systemTheme = window.matchMedia('(prefers-color-scheme: dark)')
-        .matches
-        ? 'dark'
-        : 'light';
+      if (currentTheme === 'system') {
+        const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        root.classList.add(systemTheme);
+      } else {
+        root.classList.add(currentTheme);
+      }
+    };
 
-      root.classList.add(systemTheme);
-      return;
-    }
+    applyTheme(theme); // Apply theme on initial load and when theme state changes
 
-    root.classList.add(theme);
-  }, [theme]);
+    // Listener for system theme changes
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const handleChange = () => {
+      // Only re-apply if the current theme is 'system'
+      if (theme === 'system') {
+        applyTheme('system');
+      }
+    };
+
+    mediaQuery.addEventListener('change', handleChange);
+
+    // Cleanup listener on component unmount or before effect re-runs
+    return () => {
+      mediaQuery.removeEventListener('change', handleChange);
+    };
+  }, [theme]); // Re-run effect if theme state changes
 
   const value = {
     theme,
-    setTheme: (theme: Theme) => {
-      localStorage.setItem(storageKey, theme);
-      setTheme(theme);
+    setTheme: (newTheme: Theme) => { // Renamed parameter for clarity
+      localStorage.setItem(storageKey, newTheme);
+      setTheme(newTheme); // Update React state
     },
   };
 
