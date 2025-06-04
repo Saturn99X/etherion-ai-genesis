@@ -7,7 +7,7 @@ const Header = () => {
       <div className="flex items-center gap-4 text-white">
         <div className="size-8">
           <img 
-            src="/lovable-uploads/0bfe7ecb-cc02-4a55-ab15-adb14a2c6263.png" 
+            src="/lovable-uploads/1a13ce9e-c60e-4209-b8a6-0dd938528a33.png" 
             alt="Etherion Logo" 
             className="w-full h-full object-contain rounded-lg"
           />
