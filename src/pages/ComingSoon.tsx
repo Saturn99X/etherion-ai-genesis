@@ -1,6 +1,6 @@
 
 import { Link } from 'react-router-dom';
-import { Clock, ArrowLeft } from 'lucide-react';
+import { Clock, ArrowLeft, Facebook, Linkedin, Mail } from 'lucide-react';
 
 export default function ComingSoon() {
   return (
@@ -18,9 +18,40 @@ export default function ComingSoon() {
           </p>
         </div>
         
-        <div className="space-y-4">
+        <div className="space-y-6">
           <div className="w-full bg-etherion-border rounded-full h-2">
             <div className="bg-etherion-blue h-2 rounded-full w-3/4 animate-pulse"></div>
+          </div>
+          
+          {/* Big Email Button */}
+          <a 
+            href="mailto:contact@etherionai.com"
+            className="flex items-center justify-center gap-3 w-full bg-etherion-blue hover:bg-etherion-blue/80 text-white font-semibold py-4 px-6 rounded-lg transition-colors"
+          >
+            <Mail className="w-5 h-5" />
+            Email Us
+          </a>
+          
+          {/* Social Media Buttons */}
+          <div className="flex justify-center gap-4">
+            <a 
+              href="https://www.linkedin.com/company/107378760/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center justify-center w-12 h-12 bg-etherion-blue/20 hover:bg-etherion-blue/30 text-etherion-blue hover:text-white rounded-lg transition-colors"
+              aria-label="LinkedIn"
+            >
+              <Linkedin className="w-5 h-5" />
+            </a>
+            <a 
+              href="https://web.facebook.com/profile.php?id=61575994394450" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center justify-center w-12 h-12 bg-etherion-blue/20 hover:bg-etherion-blue/30 text-etherion-blue hover:text-white rounded-lg transition-colors"
+              aria-label="Facebook"
+            >
+              <Facebook className="w-5 h-5" />
+            </a>
           </div>
           
           <Link 
