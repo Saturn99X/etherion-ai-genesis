@@ -1,4 +1,6 @@
 
+import { Link } from "react-router-dom";
+
 const HeroSection = () => {
   return (
     <div className="@container">
@@ -154,12 +156,13 @@ const HeroSection = () => {
             <h2 className="text-white text-center text-2xl md:text-3xl font-medium max-w-3xl mb-10 opacity-90">
               Take a glimpse at the pinnacle of the AI era, let's build your AI-powered cash machine.
             </h2>
-            <button
+            <Link
+              to="/get-started"
               className="flex min-w-[160px] max-w-[520px] mx-auto cursor-pointer items-center justify-center overflow-hidden rounded-2xl h-16 px-14 bg-etherion-blue text-white text-2xl font-bold leading-normal tracking-[0.018em] shadow-2xl hover:bg-blue-700 transition"
               style={{ zIndex: 3 }}
             >
               <span className="truncate">Get Started</span>
-            </button>
+            </Link>
           </div>
         </div>
       </div>
