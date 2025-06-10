@@ -18,6 +18,7 @@ const Header = () => {
       <div className="hidden md:flex flex-1 justify-end gap-8">
         <div className="flex items-center gap-9">
           <Link className="text-white text-sm font-medium leading-normal" to="#">Services</Link>
+          <Link className="text-white text-sm font-medium leading-normal hover:text-etherion-blue transition-colors" to="/blog">Blog</Link>
           <Link className="text-white text-sm font-medium leading-normal" to="#">About Us</Link>
           <Link className="text-white text-sm font-medium leading-normal" to="#">Contact</Link>
         </div>
