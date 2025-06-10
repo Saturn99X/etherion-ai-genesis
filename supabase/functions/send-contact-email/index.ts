@@ -2,7 +2,9 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { Resend } from "npm:resend@2.0.0";
 
-const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
+// Create Resend instance with the correct API key
+const resendApiKey = Deno.env.get("RESEND_API_KEY");
+const resend = new Resend(resendApiKey);
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -27,6 +29,11 @@ const handler = async (req: Request): Promise<Response> => {
 
   try {
     const { type, email, name, date, time, formData }: EmailRequest = await req.json();
+    
+    // Debug logging
+    console.log("Received request with type:", type);
+    console.log("Email:", email);
+    console.log("API Key exists:", !!resendApiKey);
     
     let subject: string;
     let htmlContent: string;
@@ -67,6 +74,8 @@ const handler = async (req: Request): Promise<Response> => {
         <p>Please confirm this booking and send calendar invite to the client.</p>
       `;
     }
+
+    console.log("Attempting to send email with subject:", subject);
 
     const emailResponse = await resend.emails.send({
       from: "Etherion AI <onboarding@resend.dev>",
