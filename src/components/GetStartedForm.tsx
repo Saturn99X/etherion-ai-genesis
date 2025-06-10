@@ -1,5 +1,6 @@
 
 import { useState } from 'react';
+import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -49,10 +50,27 @@ export default function GetStartedForm() {
     setIsLoading(true);
 
     try {
-      // Here you would typically make an API call to your backend
-      // For now, we'll just simulate a delay
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
+      const nameParts = formData.nameAndRole.split(/\s*[-\/,]\s*/);
+      const name = nameParts[0] || formData.nameAndRole; // Fallback to full string
+      const currentDate = new Date();
+      const date = currentDate.toLocaleDateString();
+      const time = currentDate.toLocaleTimeString();
+
+      const { data, error: invokeError } = await supabase.functions.invoke('send-contact-email', {
+        body: {
+          type: 'contactForm', // New type for this form
+          email: formData.email,
+          name: name,
+          date: date,
+          time: time,
+          formData: formData // Pass the whole form data
+        }
+      });
+
+      if (invokeError) {
+        throw new Error(invokeError.message);
+      }
+
       // Simulate successful submission
       setSuccess(true);
       // Reset form after success
@@ -71,8 +89,8 @@ export default function GetStartedForm() {
         callExpectations: '',
         specificQuestions: '',
       });
-    } catch (err) {
-      setError('Failed to submit the form. Please try again.');
+    } catch (err: any) {
+      setError(err.message || 'Failed to submit the form. Please try again.');
     } finally {
       setIsLoading(false);
     }
