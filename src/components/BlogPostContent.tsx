@@ -199,16 +199,6 @@ const BlogPostContent = ({ slug }: BlogPostContentProps) => {
             And if you're wondering how this "token prediction" engine can be specifically harnessed to automate tasks and boost productivity in your business, that's exactly what we help SMEs figure out.
           </p>
 
-          <div className="bg-gradient-to-r from-etherion-blue/20 to-etherion-darkBlue border border-etherion-blue rounded-xl p-8 my-12 text-center">
-            <h3 className="text-white text-2xl font-bold mb-4">Ready to see how AI can automate your workflows?</h3>
-            <p className="text-etherion-text mb-6">Get a complimentary "AI Opportunity Quick Scan" tailored to your business.</p>
-            <Link 
-              to="/get-started"
-              className="inline-flex items-center justify-center px-8 py-3 bg-etherion-blue text-white font-bold rounded-xl hover:bg-blue-700 transition-colors"
-            >
-              Get Your Free AI Scan
-            </Link>
-          </div>
         </div>
       </article>
     );
