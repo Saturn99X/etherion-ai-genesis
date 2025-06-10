@@ -1,8 +1,8 @@
 
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
-import { Resend } from "npm:resend@2.0.0";
-
-const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
+// import { Resend } from "npm:resend@2.0.0"; // Remove
+// const resend = new Resend(Deno.env.get("RESEND_API_KEY")); // Remove
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -26,58 +26,50 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
-    const { type, email, name, date, time, formData }: EmailRequest = await req.json();
-    
-    let subject: string;
-    let htmlContent: string;
+    // Ensure you have SUPABASE_URL and SUPABASE_ANON_KEY or SUPABASE_SERVICE_ROLE_KEY in env
+    // For functions, service_role key is typical for admin-like operations.
+    const supabaseClient = createClient(
+      Deno.env.get('SUPABASE_URL')!, // Ensure these are set in your function's env
+      Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')! // Use service role key for backend operations
+    );
 
-    if (type === 'ebook') {
-      subject = "New Ebook Request - Etherion AI";
-      htmlContent = `
-        <h2>New Ebook Request</h2>
-        <p><strong>Email:</strong> ${email}</p>
-        <p>Someone has requested the free automation ebook.</p>
-        <hr>
-        <p>Please send them the ebook and add them to the mailing list.</p>
-      `;
-    } else if (type === 'contactForm') {
-      subject = "New Contact Form Submission - Etherion AI";
-      htmlContent = `
-        <h2>New Contact Form Submission</h2>
-        <p><strong>Name:</strong> ${name || 'Not provided'}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Submitted on:</strong> ${date} at ${time}</p>
-        <hr>
-        <h3>Form Details:</h3>
-        <ul>
-          ${formData ? Object.entries(formData).map(([key, value]) => `<li><strong>${key.replace(/([A-Z])/g, ' $1').replace(/^./, (str: string) => str.toUpperCase())}:</strong> ${value}</li>`).join('') : '<li>No additional form data submitted.</li>'}
-        </ul>
-        <hr>
-        <p>Please review this new contact form submission and follow up with the client.</p>
-      `;
-    } else { // Default to 'booking' if type is not 'ebook' or 'contactForm'
-      subject = "New Call Booking - Etherion AI";
-      htmlContent = `
-        <h2>New 15-Minute Call Booking</h2>
-        <p><strong>Name:</strong> ${name || 'Not provided'}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Date:</strong> ${date}</p>
-        <p><strong>Time:</strong> ${time}</p>
-        <hr>
-        <p>Please confirm this booking and send calendar invite to the client.</p>
-      `;
+    const { type, email, name, date, time, formData }: EmailRequest = await req.json();
+
+    // Prepare data for insertion
+    const submissionData = {
+      company_name: formData?.companyName,
+      name_and_role: formData?.nameAndRole, // Storing the full field
+      email: email, // from top-level
+      business_description: formData?.businessDescription,
+      employee_count: formData?.employeeCount,
+      challenges: formData?.challenges,
+      desired_outcomes: formData?.desiredOutcomes,
+      urgency_scale: formData?.urgencyScale ? formData.urgencyScale[0] : null, // Extract number from array
+      current_software: formData?.currentSoftware,
+      collaboration: formData?.collaboration,
+      ai_experience: formData?.aiExperience,
+      call_expectations: formData?.callExpectations,
+      specific_questions: formData?.specificQuestions,
+      raw_form_data: formData, // Store the whole formData object
+      // 'type', 'name', 'date', 'time' from EmailRequest are not explicitly mapped here
+      // but will be part of raw_form_data if formData contains them.
+      // The 'name' from EmailRequest is the parsed one, email is top-level.
+      // date & time from top level are ignored for dedicated DB columns.
+    };
+
+    const { data: dbData, error: dbError } = await supabaseClient
+      .from('contact_submissions')
+      .insert([submissionData])
+      .select(); // .select() to get the inserted data back
+
+    if (dbError) {
+      console.error("Error inserting data into DB:", dbError);
+      throw new Error(`Database error: ${dbError.message}`); // This will be caught by the main catch block
     }
 
-    const emailResponse = await resend.emails.send({
-      from: "Etherion AI <onboarding@resend.dev>",
-      to: ["sales@etherionai.com"],
-      subject: subject,
-      html: htmlContent,
-    });
+    console.log("Data inserted successfully:", dbData);
 
-    console.log("Email sent successfully:", emailResponse);
-
-    return new Response(JSON.stringify({ success: true }), {
+    return new Response(JSON.stringify({ success: true, message: "Form data submitted successfully.", submissionId: dbData?.[0]?.id }), {
       status: 200,
       headers: {
         "Content-Type": "application/json",
@@ -85,7 +77,7 @@ const handler = async (req: Request): Promise<Response> => {
       },
     });
   } catch (error: any) {
-    console.error("Error in send-contact-email function:", error);
+    console.error("Error in function (send-contact-email):", error);
     return new Response(
       JSON.stringify({ error: error.message }),
       {
