@@ -1,6 +1,6 @@
+
 import { Bot, Settings, ChartLine, Rocket, Users } from "lucide-react";
 import GlowingBorder from "./GlowingBorder";
-
 
 const ServicesSection = () => {
   const services = [
@@ -32,7 +32,7 @@ const ServicesSection = () => {
   ];
 
   return (
-    <>
+    <div id="services">
       <div className="flex flex-col gap-10 px-4 py-10 @container">
         <div className="flex flex-col gap-4">
           <h1
@@ -60,7 +60,7 @@ const ServicesSection = () => {
           ))}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
