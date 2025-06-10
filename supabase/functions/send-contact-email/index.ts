@@ -11,11 +11,12 @@ const corsHeaders = {
 };
 
 interface EmailRequest {
-  type: 'ebook' | 'booking';
+  type: 'ebook' | 'booking' | 'contactForm'; // Add 'contactForm'
   email: string;
   name?: string;
   date?: string;
   time?: string;
+  formData?: Record<string, any>; // Add formData for detailed submissions
 }
 
 const handler = async (req: Request): Promise<Response> => {
@@ -25,7 +26,7 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
-    const { type, email, name, date, time }: EmailRequest = await req.json();
+    const { type, email, name, date, time, formData }: EmailRequest = await req.json();
     
     let subject: string;
     let htmlContent: string;
@@ -39,7 +40,22 @@ const handler = async (req: Request): Promise<Response> => {
         <hr>
         <p>Please send them the ebook and add them to the mailing list.</p>
       `;
-    } else {
+    } else if (type === 'contactForm') {
+      subject = "New Contact Form Submission - Etherion AI";
+      htmlContent = `
+        <h2>New Contact Form Submission</h2>
+        <p><strong>Name:</strong> ${name || 'Not provided'}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Submitted on:</strong> ${date} at ${time}</p>
+        <hr>
+        <h3>Form Details:</h3>
+        <ul>
+          ${formData ? Object.entries(formData).map(([key, value]) => `<li><strong>${key.replace(/([A-Z])/g, ' $1').replace(/^./, (str: string) => str.toUpperCase())}:</strong> ${value}</li>`).join('') : '<li>No additional form data submitted.</li>'}
+        </ul>
+        <hr>
+        <p>Please review this new contact form submission and follow up with the client.</p>
+      `;
+    } else { // Default to 'booking' if type is not 'ebook' or 'contactForm'
       subject = "New Call Booking - Etherion AI";
       htmlContent = `
         <h2>New 15-Minute Call Booking</h2>
