@@ -4,14 +4,24 @@ import { Calendar, Clock, User } from "lucide-react";
 
 const blogPosts = [
   {
+    id: "mastering-prompt-engineering-guide",
+    title: "Mastering Prompt Engineering: The Art of Communicating with AI",
+    excerpt: "Discover how to craft powerful prompts that unlock AI's true potential. From basic principles to mega prompts, learn the techniques that transform AI from a simple tool into your most reliable team member.",
+    date: "2025-06-11",
+    readTime: "12 min read",
+    author: "Etherion Team",
+    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995",
+    featured: true
+  },
+  {
     id: "how-ai-thinks-llms-token-prediction",
     title: "How AI Actually \"Thinks\": A Simple Look at LLMs & Token Prediction",
     excerpt: "Ever wondered how ChatGPT or Claude actually work? It's less about conscious thinking and more about being incredibly skilled at predicting what comes next.",
-    date: "2024-12-10",
+    date: "2025-06-10",
     readTime: "8 min read",
     author: "Etherion Team",
     image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b",
-    featured: true
+    featured: false
   }
 ];
 
