@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import HeroSection from "../components/HeroSection";
 import BlogGlimpse from "../components/BlogGlimpse";
+import AboutSection from "../components/AboutSection";
 import ServicesSection from "../components/ServicesSection";
 import CaseStudiesSection from "../components/CaseStudiesSection";
 import CTASection from "../components/CTASection";
@@ -18,6 +19,7 @@ const Index = () => {
           <div className="layout-content-container flex flex-col max-w-[960px] flex-1">
             <HeroSection />
             <BlogGlimpse />
+            <AboutSection />
             <ServicesSection />
             <CTASection />
           </div>

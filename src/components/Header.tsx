@@ -39,6 +39,7 @@ const Header = () => {
       
       <div className="hidden md:flex flex-1 justify-end gap-8">
         <div className="flex items-center gap-9">
+          <Link className="text-white text-sm font-medium leading-normal hover:text-etherion-blue transition-colors" to="/">Home</Link>
           <button 
             className="text-white text-sm font-medium leading-normal hover:text-etherion-blue transition-colors" 
             onClick={handleServicesClick}

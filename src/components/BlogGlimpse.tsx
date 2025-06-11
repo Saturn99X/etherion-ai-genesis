@@ -5,13 +5,26 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
 const BlogGlimpse = () => {
-  const featuredPost = {
-    id: "how-ai-thinks-llms-token-prediction",
-    title: "How AI Actually \"Thinks\": A Simple Look at LLMs & Token Prediction",
-    excerpt: "Ever wondered how ChatGPT or Claude actually work? It's less about conscious thinking and more about being incredibly skilled at predicting what comes next.",
-    readTime: "8 min read",
-    image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b"
-  };
+  const blogPosts = [
+    {
+      id: "mastering-prompt-engineering-guide",
+      title: "Mastering Prompt Engineering: The Art of Communicating with AI",
+      excerpt: "Discover how to craft powerful prompts that unlock AI's true potential. From basic principles to mega prompts, learn the techniques that transform AI from a simple tool into your most reliable team member.",
+      readTime: "12 min read",
+      image: "https://images.unsplash.com/photo-1677442136019-21780ecad995",
+      featured: true
+    },
+    {
+      id: "how-ai-thinks-llms-token-prediction",
+      title: "How AI Actually \"Thinks\": A Simple Look at LLMs & Token Prediction",
+      excerpt: "Ever wondered how ChatGPT or Claude actually work? It's less about conscious thinking and more about being incredibly skilled at predicting what comes next.",
+      readTime: "8 min read",
+      image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b",
+      featured: false
+    }
+  ];
+
+  const featuredPost = blogPosts.find(post => post.featured) || blogPosts[0];
 
   return (
     <div className="py-16">
@@ -19,7 +32,7 @@ const BlogGlimpse = () => {
         <div className="flex items-center justify-center gap-3 mb-4">
           <BookOpen className="text-etherion-blue" size={32} />
           <h2 className="text-white text-3xl font-bold">
-            Take a Glimpse at Our Blog
+            Take a Glimpse at Our Blog Articles
           </h2>
         </div>
         <p className="text-etherion-text text-lg max-w-2xl mx-auto">

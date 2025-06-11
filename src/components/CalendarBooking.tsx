@@ -8,10 +8,18 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { supabase } from '@/integrations/supabase/client';
 import { Clock } from 'lucide-react';
 
-const timeSlots = [
-  '09:00', '09:30', '10:00', '10:30', '11:00', '11:30',
-  '14:00', '14:30', '15:00', '15:30', '16:00', '16:30'
-];
+const generateTimeSlots = () => {
+  const slots = [];
+  for (let hour = 0; hour < 24; hour++) {
+    for (let minute = 0; minute < 60; minute += 30) {
+      const timeString = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
+      slots.push(timeString);
+    }
+  }
+  return slots;
+};
+
+const timeSlots = generateTimeSlots();
 
 interface CalendarBookingProps {
   onSuccess: () => void;
@@ -104,23 +112,25 @@ const CalendarBooking = ({ onSuccess }: CalendarBookingProps) => {
 
         {selectedDate && (
           <div>
-            <Label className="text-white">Select Time</Label>
-            <div className="grid grid-cols-3 gap-2 mt-2">
-              {timeSlots.map((time) => (
-                <Button
-                  key={time}
-                  variant={selectedTime === time ? "default" : "outline"}
-                  size="sm"
-                  onClick={() => setSelectedTime(time)}
-                  className={
-                    selectedTime === time
-                      ? "bg-etherion-blue text-white"
-                      : "border-slate-600 text-slate-300 hover:bg-slate-700"
-                  }
-                >
-                  {time}
-                </Button>
-              ))}
+            <Label className="text-white">Select Time (Any Hour Available)</Label>
+            <div className="mt-2 max-h-40 overflow-y-auto bg-slate-700/30 rounded-lg p-3">
+              <div className="grid grid-cols-4 gap-2">
+                {timeSlots.map((time) => (
+                  <Button
+                    key={time}
+                    variant={selectedTime === time ? "default" : "outline"}
+                    size="sm"
+                    onClick={() => setSelectedTime(time)}
+                    className={
+                      selectedTime === time
+                        ? "bg-etherion-blue text-white text-xs"
+                        : "border-slate-600 text-slate-300 hover:bg-slate-700 text-xs"
+                    }
+                  >
+                    {time}
+                  </Button>
+                ))}
+              </div>
             </div>
           </div>
         )}

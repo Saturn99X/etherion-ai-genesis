@@ -9,7 +9,78 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      [_ in never]: never
+      contact_submissions: {
+        Row: {
+          ai_experience: string | null
+          business_description: string | null
+          call_expectations: string | null
+          challenges: string | null
+          collaboration: string | null
+          company_name: string | null
+          current_software: string | null
+          desired_outcomes: string | null
+          email: string | null
+          employee_count: string | null
+          id: number
+          name_and_role: string | null
+          raw_form_data: Json | null
+          specific_questions: string | null
+          submitted_at: string
+          urgency_scale: number | null
+        }
+        Insert: {
+          ai_experience?: string | null
+          business_description?: string | null
+          call_expectations?: string | null
+          challenges?: string | null
+          collaboration?: string | null
+          company_name?: string | null
+          current_software?: string | null
+          desired_outcomes?: string | null
+          email?: string | null
+          employee_count?: string | null
+          id?: never
+          name_and_role?: string | null
+          raw_form_data?: Json | null
+          specific_questions?: string | null
+          submitted_at?: string
+          urgency_scale?: number | null
+        }
+        Update: {
+          ai_experience?: string | null
+          business_description?: string | null
+          call_expectations?: string | null
+          challenges?: string | null
+          collaboration?: string | null
+          company_name?: string | null
+          current_software?: string | null
+          desired_outcomes?: string | null
+          email?: string | null
+          employee_count?: string | null
+          id?: never
+          name_and_role?: string | null
+          raw_form_data?: Json | null
+          specific_questions?: string | null
+          submitted_at?: string
+          urgency_scale?: number | null
+        }
+        Relationships: []
+      }
+      M: {
+        Row: {
+          created_at: string
+          id: number
+        }
+        Insert: {
+          created_at?: string
+          id?: number
+        }
+        Update: {
+          created_at?: string
+          id?: number
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
