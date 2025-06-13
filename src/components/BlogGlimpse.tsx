@@ -35,23 +35,23 @@ const BlogGlimpse = () => {
   const featuredPost = blogPosts.find(post => post.featured) || blogPosts[0];
 
   return (
-    <div className="py-16">
-      <div className="text-center mb-12">
-        <div className="flex items-center justify-center gap-3 mb-4">
-          <BookOpen className="text-etherion-blue" size={32} />
-          <h2 className="text-white text-3xl font-bold">
+    <div className="px-4 sm:px-6 md:px-10 lg:px-40 py-12 sm:py-16 md:py-20">
+      <div className="text-center mb-8 sm:mb-12">
+        <div className="flex items-center justify-center gap-2 sm:gap-3 mb-4 sm:mb-6">
+          <BookOpen className="text-etherion-blue" size={28} />
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white">
             Take a Glimpse at Our Blog Articles
           </h2>
         </div>
-        <p className="text-etherion-text text-lg max-w-2xl mx-auto">
+        <p className="text-sm sm:text-base md:text-lg text-etherion-text max-w-2xl mx-auto px-4 sm:px-0">
           Deep insights into AI, automation, and practical business intelligence to help you stay ahead.
         </p>
       </div>
 
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-5xl mx-auto">
         <Link to={`/blog/${featuredPost.id}`} className="group block">
           <Card className="bg-slate-800/50 backdrop-blur-lg border border-slate-600/40 hover:border-etherion-blue transition-all duration-300 overflow-hidden">
-            <div className="md:flex">
+            <div className="flex flex-col md:flex-row">
               <div className="md:w-1/3">
                 <div className="aspect-video md:aspect-square bg-cover bg-center relative overflow-hidden">
                   <img 
@@ -62,33 +62,33 @@ const BlogGlimpse = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-etherion-dark/60 to-transparent" />
                 </div>
               </div>
-              <CardContent className="md:w-2/3 p-8">
-                <div className="flex items-center gap-2 text-etherion-text text-sm mb-4">
-                  <span className="bg-etherion-blue/20 text-etherion-blue px-3 py-1 rounded-full">
+              <CardContent className="md:w-2/3 p-4 sm:p-6 md:p-8">
+                <div className="flex flex-col sm:flex-row sm:items-center gap-2 text-etherion-text text-xs sm:text-sm mb-3 sm:mb-4">
+                  <span className="bg-etherion-blue/20 text-etherion-blue px-2 sm:px-3 py-1 rounded-full text-xs">
                     Featured Article
                   </span>
-                  <span>{featuredPost.readTime}</span>
+                  <span className="text-xs sm:text-sm">{featuredPost.readTime}</span>
                 </div>
-                <h3 className="text-white text-2xl font-bold leading-tight mb-4 group-hover:text-etherion-blue transition-colors">
+                <h3 className="text-white text-lg sm:text-xl md:text-2xl font-bold leading-tight mb-3 sm:mb-4 group-hover:text-etherion-blue transition-colors">
                   {featuredPost.title}
                 </h3>
-                <p className="text-etherion-text text-base leading-relaxed mb-6">
+                <p className="text-etherion-text text-sm sm:text-base leading-relaxed mb-4 sm:mb-6">
                   {featuredPost.excerpt}
                 </p>
                 <div className="flex items-center justify-between">
-                  <span className="text-etherion-blue font-medium group-hover:underline">
+                  <span className="text-etherion-blue font-medium group-hover:underline text-sm sm:text-base">
                     Read Full Article
                   </span>
-                  <ArrowRight className="text-etherion-blue group-hover:translate-x-1 transition-transform" size={20} />
+                  <ArrowRight className="text-etherion-blue group-hover:translate-x-1 transition-transform" size={18} />
                 </div>
               </CardContent>
             </div>
           </Card>
         </Link>
 
-        <div className="text-center mt-8">
+        <div className="text-center mt-6 sm:mt-8">
           <Link to="/blog">
-            <Button variant="outline" className="border-etherion-blue text-etherion-blue hover:bg-etherion-blue hover:text-white">
+            <Button variant="outline" className="border-etherion-blue text-etherion-blue hover:bg-etherion-blue hover:text-white px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base">
               View All Articles
               <ArrowRight size={16} className="ml-2" />
             </Button>
