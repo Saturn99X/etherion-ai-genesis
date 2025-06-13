@@ -53,27 +53,27 @@ const GetStarted = () => {
       <MouseGlow />
       <div className="layout-container flex h-full grow flex-col">
         <Header />
-        <div className="px-4 sm:px-6 md:px-10 lg:px-40 flex flex-1 justify-center py-5 sm:py-8">
-          <div className="layout-content-container flex flex-col max-w-[800px] flex-1">
-            <div className="py-6 sm:py-10">
-              <div className="text-center mb-6 sm:mb-8">
-                <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 sm:mb-4 px-4 sm:px-0">
+        <div className="px-4 md:px-10 lg:px-40 flex flex-1 justify-center py-5">
+          <div className="layout-content-container flex flex-col max-w-[600px] flex-1">
+            <div className="py-10">
+              <div className="text-center mb-8">
+                <h1 className="text-white text-4xl font-bold mb-4">
                   Ready to Automate Your Business?
                 </h1>
-                <p className="text-sm sm:text-base md:text-lg text-etherion-text px-4 sm:px-0">
+                <p className="text-etherion-text text-lg">
                   Get our free automation guide or book a quick 15-minute consultation.
                 </p>
               </div>
 
               {!showBookCall ? (
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mb-6 sm:mb-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                   <Card className="bg-slate-800/50 backdrop-blur-lg border border-slate-600/40">
-                    <CardHeader className="text-center p-4 sm:p-6">
-                      <BookOpen className="text-etherion-blue mx-auto mb-2" size={32} />
-                      <CardTitle className="text-white text-lg sm:text-xl">Free Automation Guide</CardTitle>
+                    <CardHeader className="text-center">
+                      <BookOpen className="text-etherion-blue mx-auto mb-2" size={40} />
+                      <CardTitle className="text-white">Free Automation Guide</CardTitle>
                     </CardHeader>
-                    <CardContent className="p-4 sm:p-6 pt-0">
-                      <p className="text-etherion-text text-sm sm:text-base mb-4 text-center">
+                    <CardContent>
+                      <p className="text-etherion-text text-sm mb-4 text-center">
                         Get our comprehensive ebook on business automation strategies delivered to your inbox.
                       </p>
                       {emailSubmitted ? (
@@ -89,9 +89,9 @@ const GetStarted = () => {
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             required
-                            className="bg-slate-700/50 border-slate-600 text-white placeholder-slate-400 text-sm sm:text-base"
+                            className="bg-slate-700/50 border-slate-600 text-white placeholder-slate-400"
                           />
-                          <Button type="submit" className="w-full bg-etherion-blue hover:bg-blue-600 text-sm sm:text-base">
+                          <Button type="submit" className="w-full bg-etherion-blue hover:bg-blue-600">
                             Get Free Ebook
                           </Button>
                         </form>
@@ -100,12 +100,12 @@ const GetStarted = () => {
                   </Card>
 
                   <Card className="bg-slate-800/50 backdrop-blur-lg border border-slate-600/40">
-                    <CardHeader className="text-center p-4 sm:p-6">
-                      <Calendar className="text-etherion-blue mx-auto mb-2" size={32} />
-                      <CardTitle className="text-white text-lg sm:text-xl">Book a 15-Min Call</CardTitle>
+                    <CardHeader className="text-center">
+                      <Calendar className="text-etherion-blue mx-auto mb-2" size={40} />
+                      <CardTitle className="text-white">Book a 15-Min Call</CardTitle>
                     </CardHeader>
-                    <CardContent className="p-4 sm:p-6 pt-0">
-                      <p className="text-etherion-text text-sm sm:text-base mb-4 text-center">
+                    <CardContent>
+                      <p className="text-etherion-text text-sm mb-4 text-center">
                         Schedule a quick 15-minute call to discuss your specific automation needs.
                       </p>
                       {callBooked ? (
@@ -116,7 +116,7 @@ const GetStarted = () => {
                       ) : (
                         <Button 
                           onClick={handleBookCall}
-                          className="w-full bg-green-600 hover:bg-green-700 text-sm sm:text-base"
+                          className="w-full bg-green-600 hover:bg-green-700"
                         >
                           Book Free Call
                         </Button>
@@ -125,13 +125,13 @@ const GetStarted = () => {
                   </Card>
                 </div>
               ) : (
-                <div className="mb-6 sm:mb-8">
+                <div className="mb-8">
                   <CalendarBooking onSuccess={handleCallBooked} />
-                  <div className="text-center mt-4 sm:mt-6">
+                  <div className="text-center mt-6">
                     <Button 
                       variant="outline" 
                       onClick={() => setShowBookCall(false)}
-                      className="border-slate-600 text-slate-300 hover:bg-slate-700 text-sm sm:text-base px-4 sm:px-6"
+                      className="border-slate-600 text-slate-300 hover:bg-slate-700"
                     >
                       Back to Options
                     </Button>
@@ -140,14 +140,14 @@ const GetStarted = () => {
               )}
 
               {!showBookCall && (
-                <div className="text-center px-4 sm:px-0">
-                  <p className="text-etherion-text text-xs sm:text-sm mb-3 sm:mb-4">
+                <div className="text-center">
+                  <p className="text-etherion-text text-sm mb-4">
                     Want to provide more details about your business first?
                   </p>
                   <Link to="/detailed-consultation">
-                    <Button variant="outline" size="sm" className="border-etherion-blue text-etherion-blue hover:bg-etherion-blue hover:text-white text-sm">
+                    <Button variant="outline" size="sm" className="border-etherion-blue text-etherion-blue hover:bg-etherion-blue hover:text-white">
                       Fill Detailed Form
-                      <ArrowRight size={14} className="ml-2" />
+                      <ArrowRight size={16} className="ml-2" />
                     </Button>
                   </Link>
                 </div>
