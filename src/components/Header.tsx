@@ -1,7 +1,10 @@
 
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const Header = () => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   const handleServicesClick = (e: React.MouseEvent) => {
     e.preventDefault();
     const element = document.querySelector('#services');
@@ -63,14 +66,51 @@ const Header = () => {
         </Link>
       </div>
       <div className="md:hidden">
-        <button className="text-white">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <line x1="4" x2="20" y1="12" y2="12"></line>
-            <line x1="4" x2="20" y1="6" y2="6"></line>
-            <line x1="4" x2="20" y1="18" y2="18"></line>
-          </svg>
+        <button className="text-white" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+          {isMobileMenuOpen ? (
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          ) : (
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="4" x2="20" y1="12" y2="12"></line>
+              <line x1="4" x2="20" y1="6" y2="6"></line>
+              <line x1="4" x2="20" y1="18" y2="18"></line>
+            </svg>
+          )}
         </button>
       </div>
+
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <div className="absolute top-16 left-0 right-0 bg-slate-800 md:hidden p-4 border-b border-etherion-border">
+          <nav className="flex flex-col gap-4">
+            <Link className="text-white text-sm font-medium leading-normal hover:text-etherion-blue transition-colors" to="/" onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
+            <button
+              className="text-white text-sm font-medium leading-normal hover:text-etherion-blue transition-colors text-left"
+              onClick={(e) => { handleServicesClick(e); setIsMobileMenuOpen(false); }}
+            >
+              Services
+            </button>
+            <Link className="text-white text-sm font-medium leading-normal hover:text-etherion-blue transition-colors" to="/blog" onClick={() => setIsMobileMenuOpen(false)}>Blog</Link>
+            <Link className="text-white text-sm font-medium leading-normal hover:text-etherion-blue transition-colors" to="/about" onClick={() => setIsMobileMenuOpen(false)}>About Us</Link>
+            <button
+              className="text-white text-sm font-medium leading-normal hover:text-etherion-blue transition-colors text-left"
+              onClick={(e) => { handleContactClick(e); setIsMobileMenuOpen(false); }}
+            >
+              Contact
+            </button>
+            <Link
+              to="/get-started"
+              className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-etherion-blue text-white text-sm font-bold leading-normal tracking-[0.015em] mt-2"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              <span className="truncate">Get Started</span>
+            </Link>
+          </nav>
+        </div>
+      )}
     </header>
   );
 };

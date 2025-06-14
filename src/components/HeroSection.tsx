@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 const HeroSection = () => {
   return (
     <div className="@container">
-      <div className="@[480px]:p-4">
+      <div className="@[480px]:p-2 sm:@[480px]:p-4"> {/* Adjusted container query padding slightly */}
         <div
-          className="flex min-h-[720px] w-full max-w-10xl mx-auto flex-col gap-12 bg-cover bg-center bg-no-repeat rounded-3xl items-center justify-center px-16 pb-20 pt-10 shadow-2xl"
+          className="flex min-h-[560px] sm:min-h-[640px] lg:min-h-[720px] w-full max-w-10xl mx-auto flex-col gap-8 sm:gap-12 bg-cover bg-center bg-no-repeat rounded-3xl items-center justify-center p-6 sm:p-10 md:px-16 md:pb-20 md:pt-10 shadow-2xl"
           style={{ position: 'relative', overflow: 'hidden', borderRadius: '2rem' }}
         >
           {/* Blurred Animated Background */}
@@ -146,19 +146,19 @@ const HeroSection = () => {
             aria-hidden="true"
           />
 
-          <div className="flex flex-col items-center gap-10 w-full" style={{ position: 'relative', zIndex: 2 }}>
+          <div className="flex flex-col items-center gap-6 sm:gap-8 w-full" style={{ position: 'relative', zIndex: 2 }}>
             <h1
-              className="text-white text-center text-6xl md:text-8xl font-black leading-tight tracking-[-0.04em] mt-6 mb-6 drop-shadow-lg"
+              className="text-white text-center text-4xl sm:text-5xl lg:text-6xl xl:text-8xl font-black leading-tight tracking-[-0.03em] sm:tracking-[-0.04em] mt-4 sm:mt-6 mb-4 sm:mb-6 drop-shadow-lg"
               style={{ lineHeight: 1.05 }}
             >
               Supercharge Your Business With AI
             </h1>
-            <h2 className="text-white text-center text-2xl md:text-3xl font-medium max-w-3xl mb-10 opacity-90">
+            <h2 className="text-white text-center text-lg sm:text-xl lg:text-2xl xl:text-3xl font-medium max-w-xs sm:max-w-md md:max-w-2xl lg:max-w-3xl mb-6 sm:mb-8 opacity-90">
               Take a glimpse at the pinnacle of the AI era, let's build your AI-powered cash machine.
             </h2>
             <Link
               to="/get-started"
-              className="flex min-w-[160px] max-w-[520px] mx-auto cursor-pointer items-center justify-center overflow-hidden rounded-2xl h-16 px-14 bg-etherion-blue text-white text-2xl font-bold leading-normal tracking-[0.018em] shadow-2xl hover:bg-blue-700 transition"
+              className="flex min-w-[140px] sm:min-w-[160px] max-w-[480px] sm:max-w-[520px] mx-auto cursor-pointer items-center justify-center overflow-hidden rounded-xl sm:rounded-2xl h-12 px-8 sm:h-14 sm:px-10 md:h-16 md:px-14 bg-etherion-blue text-white text-lg sm:text-xl md:text-2xl font-bold leading-normal tracking-[0.015em] sm:tracking-[0.018em] shadow-xl hover:bg-blue-700 transition"
               style={{ zIndex: 3 }}
             >
               <span className="truncate">Get Started</span>
