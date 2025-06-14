@@ -1,44 +1,54 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'; // Keep this
 
-// IMPORTANT: Supabase Table Schema Guide for 'contact_submissions'
-// This function inserts data into the 'contact_submissions' table.
-// Please ensure your table schema in Supabase is compatible with the following fields and suggested types:
+// IMPORTANT: Supabase Table Schema Guide
+// This function routes data to different tables based on the 'type' field in the request.
+// Please ensure your Supabase tables are structured according to the schemas below:
 //
-// Common Fields (for all submission types):
-// - id: BIGINT (Primary Key, Auto-incrementing) - Handled by Supabase
-// - created_at: TIMESTAMPZ (Default: now()) - Handled by Supabase
-// - type: TEXT (e.g., 'contactForm', 'booking', 'ebook') - NOT NULL
-// - email: TEXT - Potentially NOT NULL, consider constraints like IS_EMAIL
-// - name: TEXT - NULLABLE
-// - submitted_at: TIMESTAMPZ (Timestamp of when the function processed the submission) - NOT NULL
-// - raw_form_data: JSONB (Stores the raw 'formData' object, mainly for 'contactForm', or other raw JSON payloads) - NULLABLE
+// 1. Table: 'contact_submissions' (for type: 'contactForm')
+//    - id: BIGINT (Primary Key, Auto-incrementing) - Handled by Supabase
+//    - created_at: TIMESTAMPZ (Default: now()) - Handled by Supabase
+//    - type: TEXT (Value: 'contactForm') - NOT NULL
+//    - email: TEXT - Potentially NOT NULL, consider constraints
+//    - name: TEXT - NULLABLE (This will store the 'nameAndRole' from the form)
+//    - submitted_at: TIMESTAMPZ (Timestamp of function processing) - NOT NULL
+//    - raw_form_data: JSONB (Stores the full 'formData' object) - NULLABLE
+//    - company_name: TEXT - NULLABLE
+//    - name_and_role: TEXT - NULLABLE (Redundant with 'name', consider keeping one)
+//    - business_description: TEXT - NULLABLE
+//    - employee_count: TEXT - NULLABLE
+//    - challenges: TEXT - NULLABLE
+//    - desired_outcomes: TEXT - NULLABLE
+//    - urgency_scale: INTEGER - NULLABLE
+//    - current_software: TEXT - NULLABLE
+//    - collaboration: TEXT - NULLABLE
+//    - ai_experience: TEXT - NULLABLE
+//    - call_expectations: TEXT - NULLABLE
+//    - specific_questions: TEXT - NULLABLE
+//    - form_submission_date: TEXT - NULLABLE (Client's date string)
+//    - form_submission_time: TEXT - NULLABLE (Client's time string)
 //
-// Fields specific to 'contactForm':
-// - company_name: TEXT - NULLABLE
-// - name_and_role: TEXT - NULLABLE (Contains name and role from the form)
-// - business_description: TEXT - NULLABLE
-// - employee_count: TEXT - NULLABLE
-// - challenges: TEXT - NULLABLE
-// - desired_outcomes: TEXT - NULLABLE
-// - urgency_scale: INTEGER - NULLABLE (e.g., 1-10)
-// - current_software: TEXT - NULLABLE
-// - collaboration: TEXT - NULLABLE
-// - ai_experience: TEXT - NULLABLE (Could also be BOOLEAN depending on how you want to store "Yes/No" experience)
-// - call_expectations: TEXT - NULLABLE
-// - specific_questions: TEXT - NULLABLE
-// - form_submission_date: TEXT - NULLABLE (Date string from client, e.g., "MM/DD/YYYY" or other locale formats)
-// - form_submission_time: TEXT - NULLABLE (Time string from client, e.g., "HH:MM:SS AM/PM" or other locale formats)
+// 2. Table: 'call_bookings' (for type: 'booking')
+//    - id: BIGINT (Primary Key, Auto-incrementing) - Handled by Supabase
+//    - created_at: TIMESTAMPZ (Default: now()) - Handled by Supabase
+//    - type: TEXT (Value: 'booking') - NOT NULL (Optional, as table name implies type)
+//    - email: TEXT - Potentially NOT NULL
+//    - name: TEXT - NULLABLE (Name of the person booking)
+//    - submitted_at: TIMESTAMPZ (Timestamp of function processing) - NOT NULL
+//    - call_date: DATE - NULLABLE (YYYY-MM-DD for the event)
+//    - call_time: TIMESTAMPZ - NULLABLE (Full ISO timestamp for the event)
 //
-// Fields specific to 'booking':
-// - call_date: DATE - NULLABLE (YYYY-MM-DD format, for the actual event date, derived from incoming 'booking_date')
-// - call_time: TIMESTAMPZ - NULLABLE (Full ISO timestamp for the event, constructed from incoming 'booking_date' and 'booking_time')
+// 3. Table: 'ebook_requests' (for type: 'ebook')
+//    - id: BIGINT (Primary Key, Auto-incrementing) - Handled by Supabase
+//    - created_at: TIMESTAMPZ (Default: now()) - Handled by Supabase
+//    - type: TEXT (Value: 'ebook') - NOT NULL (Optional, as table name implies type)
+//    - email: TEXT - Potentially NOT NULL
+//    - submitted_at: TIMESTAMPZ (Timestamp of function processing) - NOT NULL
+//    - name: TEXT - NULLABLE (If collected for ebooks)
 //
-// Fields specific to 'ebook' (Example, if extended later):
-// - ebook_title: TEXT - NULLABLE
-//
-// Ensure that fields not applicable to all submission types are set to NULLABLE in your Supabase table.
-// Consider adding appropriate indexes on frequently queried fields like 'type', 'email', or 'submitted_at'.
+// General Recommendations:
+// - Ensure all type-specific fields are NULLABLE if not always provided.
+// - Consider adding indexes on frequently queried fields (e.g., 'email', 'submitted_at', 'call_date').
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -85,20 +95,19 @@ const handler = async (req: Request): Promise<Response> => {
 
     const { type, email, name, date, time, formData, booking_date, booking_time }: EmailRequest = await req.json();
 
-    let submissionRecord: Record<string, any> = {
-      type: type,
-      email: email,
-      name: name, // Name from booking form or extracted from contact form
-      submitted_at: new Date().toISOString(),
-      // Include raw_form_data if formData is present (for contactForm)
-      raw_form_data: formData ? formData : null,
-    };
+    const submittedAt = new Date().toISOString();
+    let tableName = '';
+    let recordToInsert: Record<string, any> = {};
 
     if (type === 'contactForm' && formData) {
-      submissionRecord = {
-        ...submissionRecord,
+      tableName = 'contact_submissions';
+      recordToInsert = {
+        type: type,
+        email: email, // email from formData is also passed in root 'email' for this form
+        name: formData.nameAndRole, // Using nameAndRole as the primary 'name' for this form
+        submitted_at: submittedAt,
+        raw_form_data: formData,
         company_name: formData.companyName,
-        // Ensure 'name' from formData (nameAndRole) is prioritized if different from 'name' in root
         name_and_role: formData.nameAndRole,
         business_description: formData.businessDescription,
         employee_count: formData.employeeCount,
@@ -110,47 +119,52 @@ const handler = async (req: Request): Promise<Response> => {
         ai_experience: formData.aiExperience,
         call_expectations: formData.callExpectations,
         specific_questions: formData.specificQuestions,
-        // 'date' and 'time' from contact form are for when the form was filled, not booking
-        form_submission_date: date,
-        form_submission_time: time,
+        form_submission_date: date, // 'date' from original payload
+        form_submission_time: time, // 'time' from original payload
       };
     } else if (type === 'booking') {
+      tableName = 'call_bookings';
       let callTimestamp = null;
       if (booking_date && booking_time) {
-        // Basic validation for HH:MM format might be good, but for now, assume it's correct.
         const [hours, minutes] = booking_time.split(':');
         if (hours && minutes) {
-          // Create a date object. Note: This will use the server's local timezone by default
-          // if no timezone information is appended. For timestamptz, it's often best to
-          // construct in UTC or ensure the client sends timezone info.
-          // For simplicity here, we'll combine them. Supabase timestamptz will store it in UTC.
           try {
             callTimestamp = new Date(`${booking_date}T${booking_time}:00`).toISOString();
           } catch (e) {
             console.warn('Error constructing date from booking_date and booking_time:', e, { booking_date, booking_time });
-            // callTimestamp remains null if date construction fails
           }
         } else {
           console.warn('Could not parse booking_time:', booking_time);
         }
       }
-      submissionRecord = {
-        ...submissionRecord,
-        // 'name' and 'email' are already top-level from CalendarBooking.tsx
-        call_date: booking_date, // booking_date is YYYY-MM-DD, suitable for DATE type
-        call_time: callTimestamp, // This is now a full ISO string for TIMESTAMPZ
-        // 'date' and 'time' from booking payload are less structured, prioritize booking_date/time
-        // We can store them if needed, e.g., raw_booking_payload_date: date, raw_booking_payload_time: time
+      recordToInsert = {
+        type: type, // Good to keep type for context if desired, or can be omitted if table implies type
+        email: email,
+        name: name, // 'name' from original payload
+        submitted_at: submittedAt,
+        call_date: booking_date, // YYYY-MM-DD string
+        call_time: callTimestamp, // Full ISO string for timestamptz
       };
     } else if (type === 'ebook') {
-        // Handle ebook submission fields if any, e.g.
-        // submissionRecord = { ...submissionRecord, ebook_title: formData?.ebookTitle };
-        // For now, just the common fields will be included for 'ebook'
+      tableName = 'ebook_requests';
+      recordToInsert = {
+        type: type, // Good to keep type for context
+        email: email,
+        name: name, // Include name if available and desired for ebook requests
+        submitted_at: submittedAt,
+      };
+    } else {
+      // Handle unknown type
+      console.error('Unknown form submission type:', type);
+      return new Response(
+        JSON.stringify({ error: `Unknown form submission type: ${type}` }),
+        { status: 400, headers: { "Content-Type": "application/json", ...corsHeaders } }
+      );
     }
 
     const { data: dbData, error: dbError } = await supabaseClient
-      .from('contact_submissions')
-      .insert([submissionRecord]) // Use the dynamically built submissionRecord
+      .from(tableName) // Use the dynamic tableName
+      .insert([recordToInsert])
       .select();
 
     if (dbError) {
