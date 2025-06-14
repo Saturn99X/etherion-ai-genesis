@@ -9,11 +9,46 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      call_bookings: {
+        Row: {
+          call_date: string | null
+          call_time: string | null
+          created_at: string | null
+          email: string | null
+          id: number
+          name: string | null
+          submitted_at: string | null
+          type: string | null
+        }
+        Insert: {
+          call_date?: string | null
+          call_time?: string | null
+          created_at?: string | null
+          email?: string | null
+          id?: never
+          name?: string | null
+          submitted_at?: string | null
+          type?: string | null
+        }
+        Update: {
+          call_date?: string | null
+          call_time?: string | null
+          created_at?: string | null
+          email?: string | null
+          id?: never
+          name?: string | null
+          submitted_at?: string | null
+          type?: string | null
+        }
+        Relationships: []
+      }
       contact_submissions: {
         Row: {
           ai_experience: string | null
           business_description: string | null
+          call_date: string | null
           call_expectations: string | null
+          call_time: string | null
           challenges: string | null
           collaboration: string | null
           company_name: string | null
@@ -27,13 +62,13 @@ export type Database = {
           specific_questions: string | null
           submitted_at: string
           urgency_scale: number | null
-          booking_date: string | null
-          booking_time: string | null
         }
         Insert: {
           ai_experience?: string | null
           business_description?: string | null
+          call_date?: string | null
           call_expectations?: string | null
+          call_time?: string | null
           challenges?: string | null
           collaboration?: string | null
           company_name?: string | null
@@ -47,13 +82,13 @@ export type Database = {
           specific_questions?: string | null
           submitted_at?: string
           urgency_scale?: number | null
-          booking_date?: string | null
-          booking_time?: string | null
         }
         Update: {
           ai_experience?: string | null
           business_description?: string | null
+          call_date?: string | null
           call_expectations?: string | null
+          call_time?: string | null
           challenges?: string | null
           collaboration?: string | null
           company_name?: string | null
@@ -67,8 +102,33 @@ export type Database = {
           specific_questions?: string | null
           submitted_at?: string
           urgency_scale?: number | null
-          booking_date?: string | null
-          booking_time?: string | null
+        }
+        Relationships: []
+      }
+      ebook_requests: {
+        Row: {
+          created_at: string | null
+          email: string | null
+          id: number
+          name: string | null
+          submitted_at: string | null
+          type: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          email?: string | null
+          id?: never
+          name?: string | null
+          submitted_at?: string | null
+          type?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          email?: string | null
+          id?: never
+          name?: string | null
+          submitted_at?: string | null
+          type?: string | null
         }
         Relationships: []
       }

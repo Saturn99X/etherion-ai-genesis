@@ -7,14 +7,11 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'; // Keep t
 //
 // 1. Table: 'contact_submissions' (for type: 'contactForm')
 //    - id: BIGINT (Primary Key, Auto-incrementing) - Handled by Supabase
-//    - created_at: TIMESTAMPZ (Default: now()) - Handled by Supabase
-//    - type: TEXT (Value: 'contactForm') - NOT NULL
-//    - email: TEXT - Potentially NOT NULL, consider constraints
-//    - name: TEXT - NULLABLE (This will store the 'nameAndRole' from the form)
 //    - submitted_at: TIMESTAMPZ (Timestamp of function processing) - NOT NULL
+//    - email: TEXT - NULLABLE
 //    - raw_form_data: JSONB (Stores the full 'formData' object) - NULLABLE
 //    - company_name: TEXT - NULLABLE
-//    - name_and_role: TEXT - NULLABLE (Redundant with 'name', consider keeping one)
+//    - name_and_role: TEXT - NULLABLE
 //    - business_description: TEXT - NULLABLE
 //    - employee_count: TEXT - NULLABLE
 //    - challenges: TEXT - NULLABLE
@@ -25,8 +22,8 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'; // Keep t
 //    - ai_experience: TEXT - NULLABLE
 //    - call_expectations: TEXT - NULLABLE
 //    - specific_questions: TEXT - NULLABLE
-//    - form_submission_date: TEXT - NULLABLE (Client's date string)
-//    - form_submission_time: TEXT - NULLABLE (Client's time string)
+//    - call_date: DATE - NULLABLE
+//    - call_time: TIMESTAMPZ - NULLABLE
 //
 // 2. Table: 'call_bookings' (for type: 'booking')
 //    - id: BIGINT (Primary Key, Auto-incrementing) - Handled by Supabase
@@ -102,9 +99,9 @@ const handler = async (req: Request): Promise<Response> => {
     if (type === 'contactForm' && formData) {
       tableName = 'contact_submissions';
       recordToInsert = {
-        type: type,
-        email: email, // email from formData is also passed in root 'email' for this form
-        name: formData.nameAndRole, // Using nameAndRole as the primary 'name' for this form
+        // Removed `type` and `name` as they do not exist in the contact_submissions table.
+        // `name_and_role` is used instead.
+        email: formData.email, // email from formData
         submitted_at: submittedAt,
         raw_form_data: formData,
         company_name: formData.companyName,
@@ -119,8 +116,7 @@ const handler = async (req: Request): Promise<Response> => {
         ai_experience: formData.aiExperience,
         call_expectations: formData.callExpectations,
         specific_questions: formData.specificQuestions,
-        form_submission_date: date, // 'date' from original payload
-        form_submission_time: time, // 'time' from original payload
+        // Removed form_submission_date and form_submission_time as they do not exist in the table.
       };
     } else if (type === 'booking') {
       tableName = 'call_bookings';
@@ -194,4 +190,3 @@ const handler = async (req: Request): Promise<Response> => {
 };
 
 serve(handler);
-
