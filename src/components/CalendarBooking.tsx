@@ -47,6 +47,8 @@ const CalendarBooking = ({ onSuccess }: CalendarBookingProps) => {
           name,
           date: selectedDate.toLocaleDateString(),
           time: selectedTime,
+          booking_date: selectedDate.toISOString().split('T')[0], // Format as YYYY-MM-DD
+          booking_time: selectedTime,
         },
       });
 
@@ -61,50 +63,50 @@ const CalendarBooking = ({ onSuccess }: CalendarBookingProps) => {
     }
   };
 
-  const tomorrow = new Date();
-  tomorrow.setDate(tomorrow.getDate() + 1);
+  const today = new Date();
+  today.setHours(0, 0, 0, 0); // Set time to the beginning of the day
 
   const nextMonth = new Date();
   nextMonth.setMonth(nextMonth.getMonth() + 1);
 
   return (
-    <Card className="bg-slate-800/50 backdrop-blur-lg border border-slate-600/40">
-      <CardHeader className="text-center">
-        <Clock className="text-etherion-blue mx-auto mb-2" size={40} />
-        <CardTitle className="text-white">Book Your 15-Minute Call</CardTitle>
+    <Card className="bg-slate-800/50 backdrop-blur-lg border border-slate-600/40 w-full max-w-md mx-auto"> {/* Added w-full, max-w-md, mx-auto */}
+      <CardHeader className="text-center px-4 pt-6 sm:px-6 sm:pt-8"> {/* Responsive padding */}
+        <Clock className="text-etherion-blue mx-auto mb-2 sm:mb-3" size={36} /> {/* Responsive size/margin */}
+        <CardTitle className="text-white text-xl sm:text-2xl font-bold">Book Your 15-Minute Call</CardTitle> {/* Responsive text */}
       </CardHeader>
-      <CardContent className="space-y-4">
+      <CardContent className="space-y-4 px-4 pb-6 sm:px-6 sm:pb-8"> {/* Responsive padding */}
         <div>
-          <Label htmlFor="name" className="text-white">Your Name</Label>
+          <Label htmlFor="name" className="text-white text-sm sm:text-base">Your Name</Label> {/* Responsive text */}
           <Input
             id="name"
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Enter your name"
-            className="bg-slate-700/50 border-slate-600 text-white placeholder-slate-400"
+            className="bg-slate-700/50 border-slate-600 text-white placeholder-slate-400 mt-1.5" // Added margin-top
           />
         </div>
         
         <div>
-          <Label htmlFor="email" className="text-white">Your Email</Label>
+          <Label htmlFor="email" className="text-white text-sm sm:text-base">Your Email</Label> {/* Responsive text */}
           <Input
             id="email"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Enter your email"
-            className="bg-slate-700/50 border-slate-600 text-white placeholder-slate-400"
+            className="bg-slate-700/50 border-slate-600 text-white placeholder-slate-400 mt-1.5" // Added margin-top
           />
         </div>
 
         <div>
-          <Label className="text-white">Select Date</Label>
-          <div className="bg-slate-700/30 rounded-lg p-3">
+          <Label className="text-white text-sm sm:text-base">Select Date</Label> {/* Responsive text */}
+          <div className="bg-slate-700/30 rounded-lg p-2 sm:p-3 mt-1.5 overflow-x-auto"> {/* Added overflow-x-auto, adjusted padding and margin */}
             <Calendar
               mode="single"
               selected={selectedDate}
               onSelect={setSelectedDate}
-              disabled={(date) => date < tomorrow || date > nextMonth}
+              disabled={(date) => date < today || date > nextMonth}
               className="rounded-md"
             />
           </div>
@@ -112,19 +114,19 @@ const CalendarBooking = ({ onSuccess }: CalendarBookingProps) => {
 
         {selectedDate && (
           <div>
-            <Label className="text-white">Select Time (Any Hour Available)</Label>
-            <div className="mt-2 max-h-40 overflow-y-auto bg-slate-700/30 rounded-lg p-3">
-              <div className="grid grid-cols-4 gap-2">
+            <Label className="text-white text-sm sm:text-base">Select Time (Any Hour Available)</Label> {/* Responsive text */}
+            <div className="mt-1.5 max-h-40 overflow-y-auto bg-slate-700/30 rounded-lg p-2 sm:p-3"> {/* Adjusted padding and margin */}
+              <div className="grid grid-cols-3 sm:grid-cols-4 gap-2"> {/* Default to 3 cols for slightly more space */}
                 {timeSlots.map((time) => (
                   <Button
                     key={time}
                     variant={selectedTime === time ? "default" : "outline"}
-                    size="sm"
+                    size="sm" // size="sm" is already quite small
                     onClick={() => setSelectedTime(time)}
                     className={
                       selectedTime === time
-                        ? "bg-etherion-blue text-white text-xs"
-                        : "border-slate-600 text-slate-300 hover:bg-slate-700 text-xs"
+                        ? "bg-etherion-blue text-white text-xs sm:text-sm py-2" // responsive text and padding
+                        : "border-slate-600 text-slate-300 hover:bg-slate-700 text-xs sm:text-sm py-2" // responsive text and padding
                     }
                   >
                     {time}
@@ -138,7 +140,7 @@ const CalendarBooking = ({ onSuccess }: CalendarBookingProps) => {
         <Button
           onClick={handleBooking}
           disabled={!selectedDate || !selectedTime || !name || !email || isLoading}
-          className="w-full bg-etherion-blue hover:bg-blue-600"
+          className="w-full bg-etherion-blue hover:bg-blue-700 text-white font-semibold py-3 rounded-lg text-sm sm:text-base" // Adjusted class for consistent button look
         >
           {isLoading ? 'Booking...' : 'Book Call'}
         </Button>

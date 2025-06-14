@@ -1,9 +1,14 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  max-width: 1280px; /* This is fine for a max width */
+  margin: 0 auto; /* Centering is good */
+  padding: 1rem; /* Reduced base padding */
+  /* text-align: center; */ /* Removing this as it's often overridden and can be applied more specifically */
 }
+
+/* Add responsive padding using Tailwind utility classes on the actual root div in App.tsx or similar */
+/* For example, if #root is on a div in App.tsx: <div id="root" className="px-4 py-8 sm:px-6 lg:px-8"> */
+
+/* Keeping other styles for now, assuming they might be used or are harmless legacy */
 
 .logo {
   height: 6em;

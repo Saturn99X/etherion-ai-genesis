@@ -27,6 +27,8 @@ export type Database = {
           specific_questions: string | null
           submitted_at: string
           urgency_scale: number | null
+          booking_date: string | null
+          booking_time: string | null
         }
         Insert: {
           ai_experience?: string | null
@@ -45,6 +47,8 @@ export type Database = {
           specific_questions?: string | null
           submitted_at?: string
           urgency_scale?: number | null
+          booking_date?: string | null
+          booking_time?: string | null
         }
         Update: {
           ai_experience?: string | null
@@ -63,6 +67,8 @@ export type Database = {
           specific_questions?: string | null
           submitted_at?: string
           urgency_scale?: number | null
+          booking_date?: string | null
+          booking_time?: string | null
         }
         Relationships: []
       }

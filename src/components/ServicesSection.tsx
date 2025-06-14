@@ -32,28 +32,28 @@ const ServicesSection = () => {
   ];
 
   return (
-    <div id="services">
-      <div className="flex flex-col gap-10 px-4 py-10 @container">
-        <div className="flex flex-col gap-4">
+    <div id="services" className="py-12 sm:py-16 lg:py-20">
+      <div className="flex flex-col gap-10 px-4 sm:px-6 lg:px-8 @container">
+        <div className="flex flex-col gap-4 text-center max-w-3xl mx-auto">
           <h1
-            className="text-white tracking-light text-[32px] font-bold leading-tight @[480px]:text-4xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em] max-w-[720px]"
+            className="text-white tracking-tight text-3xl font-bold leading-tight @[480px]:text-4xl @[480px]:font-black sm:text-4xl lg:text-5xl @[480px]:leading-tight @[480px]:tracking-[-0.033em] max-w-[720px] mx-auto"
           >
             Our Services
           </h1>
-          <p className="text-white text-base font-normal leading-normal max-w-[720px]">
+          <p className="text-slate-300 text-sm sm:text-base lg:text-lg font-normal leading-relaxed max-w-[720px] mx-auto">
             We offer a range of AI automation services to help businesses of all sizes streamline their operations and achieve their goals.
           </p>
         </div>
-        <div className="grid grid-cols-1 gap-8 max-w-2xl mx-auto py-8">
+        <div className="grid grid-cols-1 gap-8 max-w-2xl mx-auto py-8 w-full">
           {services.map((service, index) => (
             <GlowingBorder key={index} className={`rounded-2xl w-full md:w-4/5 ${index % 2 === 0 ? 'md:justify-self-start' : 'md:justify-self-end'}`}>
-              <div className="flex flex-1 gap-4 p-6 flex-col bg-slate-800/50 backdrop-blur-lg border border-slate-600/40 rounded-2xl shadow-xl h-full">
-                <div className="text-white">
-                  <service.icon size={28} /> {/* Increased icon size slightly */}
+              <div className="flex flex-1 gap-4 p-6 sm:p-8 flex-col bg-slate-800/50 backdrop-blur-lg border border-slate-600/40 rounded-2xl shadow-xl h-full">
+                <div className="text-etherion-blue"> {/* Changed icon color for better contrast/branding */}
+                  <service.icon size={32} /> {/* Slightly increased icon size */}
                 </div>
                 <div className="flex flex-col gap-2">
-                  <h2 className="text-white text-lg font-bold leading-tight">{service.title}</h2> {/* Increased title size */}
-                  <p className="text-etherion-text text-sm font-normal leading-normal">{service.description}</p>
+                  <h2 className="text-white text-lg sm:text-xl font-bold leading-tight">{service.title}</h2>
+                  <p className="text-slate-300 text-sm sm:text-base font-normal leading-relaxed">{service.description}</p> {/* Improved text color for readability */}
                 </div>
               </div>
             </GlowingBorder>

@@ -19,25 +19,27 @@ const CaseStudiesSection = () => {
   ];
 
   return (
-    <div className="flex flex-col gap-10 px-4 py-10 @container">
-      <div className="flex flex-col gap-4">
+    <div className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8">
+      <div className="flex flex-col gap-3 sm:gap-4 text-center max-w-3xl mx-auto mb-10 sm:mb-12 lg:mb-16">
         <h1
-          className="text-white tracking-light text-[32px] font-bold leading-tight @[480px]:text-4xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em] max-w-[720px]"
+          className="text-white tracking-tight font-bold leading-tight text-3xl sm:text-4xl lg:text-5xl @[480px]:text-4xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em] max-w-[720px] mx-auto"
         >
           Case Studies
         </h1>
-        <p className="text-white text-base font-normal leading-normal max-w-[720px]">See how we've helped other businesses achieve success with AI automation.</p>
+        <p className="text-slate-300 text-sm sm:text-base lg:text-lg font-normal leading-relaxed max-w-[720px] mx-auto">
+          See how we've helped other businesses achieve success with AI automation.
+        </p>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
         {caseStudies.map((study, index) => (
-          <div key={index} className="flex flex-col gap-3 pb-3">
+          <div key={index} className="flex flex-col bg-slate-800/50 backdrop-blur-md border border-slate-700/50 rounded-xl shadow-lg overflow-hidden">
             <div
-              className="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl"
+              className="w-full bg-center bg-no-repeat aspect-video bg-cover" // Removed rounded-xl from here as parent will clip
               style={{ backgroundImage: `url("${study.imageUrl}")` }}
             ></div>
-            <div>
-              <p className="text-white text-base font-medium leading-normal">{study.title}</p>
-              <p className="text-etherion-text text-sm font-normal leading-normal">{study.description}</p>
+            <div className="p-5 sm:p-6 flex-grow flex flex-col"> {/* Added padding and flex-grow */}
+              <h3 className="text-white text-md sm:text-lg font-semibold leading-snug mb-2">{study.title}</h3>
+              <p className="text-slate-300 text-sm sm:text-base font-normal leading-relaxed flex-grow">{study.description}</p> {/* Added flex-grow to description */}
             </div>
           </div>
         ))}
