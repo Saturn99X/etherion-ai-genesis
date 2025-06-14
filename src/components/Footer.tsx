@@ -48,7 +48,11 @@ const Footer = () => {
               </svg>
               contact@etherionai.com
             </a>
-            <p className="text-etherion-text text-sm sm:text-base font-normal leading-normal">© {new Date().getFullYear()} Etherion. All rights reserved.</p>
+            <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-etherion-text text-sm sm:text-base font-normal leading-normal">
+              <span>© {new Date().getFullYear()} Etherion. All rights reserved.</span>
+              <span className="hidden sm:inline">|</span>
+              <Link to="/privacy-policy" className="hover:text-etherion-blue transition-colors">Privacy Policy</Link>
+            </div>
           </div>
         </div>
       </div>
