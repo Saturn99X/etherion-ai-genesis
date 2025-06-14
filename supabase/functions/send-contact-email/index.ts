@@ -31,8 +31,8 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'; // Keep t
 // - form_submission_time: TEXT - NULLABLE (Time string from client, e.g., "HH:MM:SS AM/PM" or other locale formats)
 //
 // Fields specific to 'booking':
-// - booking_date: DATE - NULLABLE (YYYY-MM-DD format, for the actual event date)
-// - booking_time: TEXT - NULLABLE (e.g., "HH:MM", for the actual event time)
+// - call_date: DATE - NULLABLE (YYYY-MM-DD format, for the actual event date, derived from incoming 'booking_date')
+// - call_time: TIMESTAMPZ - NULLABLE (Full ISO timestamp for the event, constructed from incoming 'booking_date' and 'booking_time')
 //
 // Fields specific to 'ebook' (Example, if extended later):
 // - ebook_title: TEXT - NULLABLE
@@ -115,13 +115,32 @@ const handler = async (req: Request): Promise<Response> => {
         form_submission_time: time,
       };
     } else if (type === 'booking') {
+      let callTimestamp = null;
+      if (booking_date && booking_time) {
+        // Basic validation for HH:MM format might be good, but for now, assume it's correct.
+        const [hours, minutes] = booking_time.split(':');
+        if (hours && minutes) {
+          // Create a date object. Note: This will use the server's local timezone by default
+          // if no timezone information is appended. For timestamptz, it's often best to
+          // construct in UTC or ensure the client sends timezone info.
+          // For simplicity here, we'll combine them. Supabase timestamptz will store it in UTC.
+          try {
+            callTimestamp = new Date(`${booking_date}T${booking_time}:00`).toISOString();
+          } catch (e) {
+            console.warn('Error constructing date from booking_date and booking_time:', e, { booking_date, booking_time });
+            // callTimestamp remains null if date construction fails
+          }
+        } else {
+          console.warn('Could not parse booking_time:', booking_time);
+        }
+      }
       submissionRecord = {
         ...submissionRecord,
         // 'name' and 'email' are already top-level from CalendarBooking.tsx
-        booking_date: booking_date, // This is the YYYY-MM-DD date for the event
-        booking_time: booking_time, // This is the time for the event
+        call_date: booking_date, // booking_date is YYYY-MM-DD, suitable for DATE type
+        call_time: callTimestamp, // This is now a full ISO string for TIMESTAMPZ
         // 'date' and 'time' from booking payload are less structured, prioritize booking_date/time
-        // We can store them if needed, e.g., raw_booking_payload_date: date
+        // We can store them if needed, e.g., raw_booking_payload_date: date, raw_booking_payload_time: time
       };
     } else if (type === 'ebook') {
         // Handle ebook submission fields if any, e.g.
