@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Calendar } from '@/components/ui/calendar';
 import { Button } from '@/components/ui/button';
@@ -45,8 +44,6 @@ const CalendarBooking = ({ onSuccess }: CalendarBookingProps) => {
           type: 'booking',
           email,
           name,
-          date: selectedDate.toLocaleDateString(),
-          time: selectedTime,
           booking_date: selectedDate.toISOString().split('T')[0], // Format as YYYY-MM-DD
           booking_time: selectedTime,
         },

@@ -1,5 +1,5 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'; // Keep this
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 
 // IMPORTANT: Supabase Table Schema Guide
 // This function routes data to different tables based on the 'type' field in the request.
@@ -56,13 +56,10 @@ const corsHeaders = {
 interface EmailRequest {
   type: 'ebook' | 'booking' | 'contactForm';
   email: string;
-  name?: string; // Common field
-  date?: string; // This seems like submission date for 'booking', less so for contactForm
-  time?: string; // This seems like submission time for 'booking'
+  name?: string; // Common for ebook and booking
   formData?: Record<string, any>; // Specific to contactForm
-  // Fields specific to booking, directly in the payload
-  booking_date?: string;
-  booking_time?: string;
+  booking_date?: string; // Specific to booking
+  booking_time?: string; // specific to booking
 }
 
 const handler = async (req: Request): Promise<Response> => {
@@ -90,7 +87,7 @@ const handler = async (req: Request): Promise<Response> => {
       supabaseServiceRoleKey
     );
 
-    const { type, email, name, date, time, formData, booking_date, booking_time }: EmailRequest = await req.json();
+    const { type, email, name, formData, booking_date, booking_time }: EmailRequest = await req.json();
 
     const submittedAt = new Date().toISOString();
     let tableName = '';
@@ -98,10 +95,27 @@ const handler = async (req: Request): Promise<Response> => {
 
     if (type === 'contactForm' && formData) {
       tableName = 'contact_submissions';
+      
+      let callTimestamp = null;
+      let callDate = null;
+
+      if (formData.callTime) {
+        try {
+          // Assuming formData.callTime is an ISO string or can be parsed by new Date()
+          const callTimeDate = new Date(formData.callTime);
+          if (!isNaN(callTimeDate.getTime())) {
+            callTimestamp = callTimeDate.toISOString();
+            callDate = callTimestamp.split('T')[0];
+          } else {
+             console.warn('Invalid date value for callTime:', formData.callTime);
+          }
+        } catch (e) {
+          console.warn('Error parsing callTime from formData:', e, { callTime: formData.callTime });
+        }
+      }
+      
       recordToInsert = {
-        // Removed `type` and `name` as they do not exist in the contact_submissions table.
-        // `name_and_role` is used instead.
-        email: formData.email, // email from formData
+        email: formData.email,
         submitted_at: submittedAt,
         raw_form_data: formData,
         company_name: formData.companyName,
@@ -116,9 +130,12 @@ const handler = async (req: Request): Promise<Response> => {
         ai_experience: formData.aiExperience,
         call_expectations: formData.callExpectations,
         specific_questions: formData.specificQuestions,
-        // Removed form_submission_date and form_submission_time as they do not exist in the table.
+        call_date: callDate,
+        call_time: callTimestamp,
       };
     } else if (type === 'booking') {
+      console.log('Processing booking with:', { email, name, booking_date, booking_time });
+
       tableName = 'call_bookings';
       let callTimestamp = null;
       if (booking_date && booking_time) {
@@ -134,19 +151,19 @@ const handler = async (req: Request): Promise<Response> => {
         }
       }
       recordToInsert = {
-        type: type, // Good to keep type for context if desired, or can be omitted if table implies type
+        type: type,
         email: email,
-        name: name, // 'name' from original payload
+        name: name,
         submitted_at: submittedAt,
-        call_date: booking_date, // YYYY-MM-DD string
-        call_time: callTimestamp, // Full ISO string for timestamptz
+        call_date: booking_date,
+        call_time: callTimestamp,
       };
     } else if (type === 'ebook') {
       tableName = 'ebook_requests';
       recordToInsert = {
-        type: type, // Good to keep type for context
+        type: type,
         email: email,
-        name: name, // Include name if available and desired for ebook requests
+        name: name,
         submitted_at: submittedAt,
       };
     } else {
