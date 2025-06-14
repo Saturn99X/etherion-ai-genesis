@@ -1,3 +1,4 @@
+
 // src/components/VSLPlayer.tsx
 interface VSLPlayerProps {
   src: string;
@@ -6,30 +7,20 @@ interface VSLPlayerProps {
 
 const VSLPlayer: React.FC<VSLPlayerProps> = ({ src, title = 'VSL Video Player' }) => {
   return (
-    <div style={{ margin: '2rem 0' }}> {/* Existing margin for spacing */}
+    <div className="my-8">
       <div
-        className="vsl-aspect-ratio-wrapper"
-        style={{
-          position: 'relative',
-          width: '100%',
-          paddingBottom: '56.25%', // 16:9 aspect ratio (9 / 16 * 100)
-          height: 0,
-          overflow: 'hidden',
-        }}
+        className="relative w-full h-0 overflow-hidden rounded-lg"
+        style={{ paddingBottom: '56.25%' }} // 16:9 aspect ratio
       >
         <video
           src={src}
           controls
-          autoPlay={false}
+          autoPlay
+          muted
+          loop
+          playsInline
           title={title}
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            display: 'block', // Ensure it's a block to fill the container
-          }}
+          className="absolute top-0 left-0 w-full h-full block"
           preload="metadata"
         >
           Your browser does not support the video tag.
