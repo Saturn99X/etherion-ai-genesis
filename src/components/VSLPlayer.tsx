@@ -15,9 +15,6 @@ const VSLPlayer: React.FC<VSLPlayerProps> = ({ src, title = 'VSL Video Player' }
         <video
           src={src}
           controls
-          autoPlay
-          muted
-          loop
           playsInline
           title={title}
           className="absolute top-0 left-0 w-full h-full block"
