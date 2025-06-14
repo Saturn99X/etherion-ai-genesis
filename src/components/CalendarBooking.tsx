@@ -55,9 +55,10 @@ const CalendarBooking = ({ onSuccess }: CalendarBookingProps) => {
       if (error) throw error;
 
       onSuccess();
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error booking call:', error);
-      alert('Failed to book call. Please try again.');
+      const errorMessage = error?.message || 'Failed to book call. Please try again.';
+      alert(errorMessage);
     } finally {
       setIsLoading(false);
     }
