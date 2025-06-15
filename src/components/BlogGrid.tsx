@@ -4,6 +4,16 @@ import { Calendar, Clock, User } from "lucide-react";
 
 const blogPosts = [
   {
+    id: "meta-scale-ai-bet",
+    title: "Meta’s $15 Billion Bet on Scale AI: A Game-Changer for AI Development or a Costly Gambit?",
+    excerpt: "Meta's monumental $15 billion investment in Scale AI signals an aggressive push to bolster its AI capabilities. But is it a game-changer or a costly gambit? We dive into the details.",
+    date: "2025-06-13",
+    readTime: "10 min read",
+    author: "Etherion Team",
+    image: "https://images.unsplash.com/photo-1518770660439-4636190af475",
+    featured: true
+  },
+  {
     id: "ai-agents-agentic-revolution",
     title: "The AI Agent Revolution: How Agentic AI is Reshaping the Future of Work",
     excerpt: "Discover how AI Agents are transforming from reactive tools to proactive, autonomous systems that can think, plan, and execute complex tasks independently. This groundbreaking revolution is reshaping how we work.",
@@ -11,16 +21,6 @@ const blogPosts = [
     readTime: "15 min read",
     author: "Etherion Team",
     image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485",
-    featured: true
-  },
-  {
-    id: "mastering-prompt-engineering-guide",
-    title: "Mastering Prompt Engineering: The Art of Communicating with AI",
-    excerpt: "Discover how to craft powerful prompts that unlock AI's true potential. From basic principles to mega prompts, learn the techniques that transform AI from a simple tool into your most reliable team member.",
-    date: "2025-06-11",
-    readTime: "12 min read",
-    author: "Etherion Team",
-    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995",
     featured: false
   },
   {
