@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import { BookOpen, ArrowRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
@@ -6,12 +7,20 @@ import { Button } from "@/components/ui/button";
 const BlogGlimpse = () => {
   const blogPosts = [
     {
+      id: "google-ai-dominance-2025",
+      title: "Google's AI Dominance: A Comprehensive Look at Recent Breakthroughs",
+      excerpt: "From topping the LMarena leaderboard to unveiling cutting-edge projects at Google I/O 2025, Google's AI advancements have set new standards for intelligence, reasoning, and multimodal capabilities.",
+      readTime: "12 min read",
+      image: "https://images.unsplash.com/photo-1573804633927-bfcbcd909acd",
+      featured: true
+    },
+    {
       id: "meta-scale-ai-bet",
       title: "Meta's $15 Billion Bet on Scale AI: A Game-Changer for AI Development or a Costly Gambit?",
       excerpt: "Meta's monumental $15 billion investment in Scale AI signals an aggressive push to bolster its AI capabilities. But is it a game-changer or a costly gambit? We dive into the details.",
       readTime: "10 min read",
       image: "https://images.unsplash.com/photo-1518770660439-4636190af475",
-      featured: true
+      featured: false
     },
     {
       id: "apple-vs-anthropic-ai-reasoning",
