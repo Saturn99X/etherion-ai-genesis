@@ -8,11 +8,19 @@ const BlogGlimpse = () => {
   const blogPosts = [
     {
       id: "meta-scale-ai-bet",
-      title: "Meta’s $15 Billion Bet on Scale AI: A Game-Changer for AI Development or a Costly Gambit?",
+      title: "Meta's $15 Billion Bet on Scale AI: A Game-Changer for AI Development or a Costly Gambit?",
       excerpt: "Meta's monumental $15 billion investment in Scale AI signals an aggressive push to bolster its AI capabilities. But is it a game-changer or a costly gambit? We dive into the details.",
       readTime: "10 min read",
       image: "https://images.unsplash.com/photo-1518770660439-4636190af475",
       featured: true
+    },
+    {
+      id: "apple-vs-anthropic-ai-reasoning",
+      title: "Apple vs. Anthropic: The AI Reasoning Debate Heats Up",
+      excerpt: "A clash of perspectives in the AI world sparked heated discussion when Apple challenged AI reasoning capabilities and Anthropic fired back with a bold response.",
+      readTime: "7 min read",
+      image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c",
+      featured: false
     },
     {
       id: "ai-agents-agentic-revolution",

@@ -1,3 +1,4 @@
+
 import { Calendar, Clock, User } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -6,6 +7,76 @@ interface BlogPostContentProps {
 }
 
 const BlogPostContent = ({ slug }: BlogPostContentProps) => {
+  if (slug === "apple-vs-anthropic-ai-reasoning") {
+    return (
+      <article className="prose prose-invert max-w-none">
+        <div className="mb-8">
+          <div className="flex items-center gap-4 text-etherion-text text-sm mb-4">
+            <div className="flex items-center gap-1">
+              <Calendar size={14} />
+              <span>June 14, 2025</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <Clock size={14} />
+              <span>7 min read</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <User size={14} />
+              <span>Etherion Team</span>
+            </div>
+          </div>
+          <h1 className="text-white text-4xl md:text-5xl font-bold leading-tight mb-6">
+            Apple vs. Anthropic: The AI Reasoning Debate Heats Up
+          </h1>
+          <div className="aspect-video bg-cover bg-center rounded-xl overflow-hidden mb-8">
+            <img 
+              src="https://images.unsplash.com/photo-1555949963-aa79dcee981c" 
+              alt="Apple vs Anthropic AI Debate"
+              className="w-full h-full object-cover"
+            />
+          </div>
+        </div>
+
+        <div className="text-etherion-text text-lg leading-relaxed space-y-6">
+          <p>
+            In June 2025, a clash of perspectives in the AI world sparked heated discussion. Apple released a research paper titled <em>The Illusion of Thinking: Understanding the Strengths and Limitations of Reasoning Models via the Lens of Problem Complexity</em>, challenging the capabilities of AI reasoning models. The paper argued that these models, touted by companies like OpenAI, Google, and Anthropic, struggle with complex logic puzzles, often wasting tokens and failing to deliver accurate answers. It suggested that the hype around reasoning models might be overstated, pointing to flawed benchmarks that focus too narrowly on coding and math tasks.
+          </p>
+          
+          <p>
+            Anthropic, a key player in AI safety and research, didn't let this go unanswered. In a bold response, they published a paper with their Claude Opus model listed as the first author—a subtle flex that didn't go unnoticed. Anthropic argued that Apple's experiments were poorly designed, citing issues like restrictive token limits that prevented models from fully articulating answers and the inclusion of unsolvable problems that skewed results. Their rebuttal emphasized that context, scale, and complexity are critical when evaluating AI reasoning, and Apple's tests didn't account for these factors properly.
+          </p>
+
+          <h2 className="text-white text-2xl font-bold mt-8 mb-4">Community Reactions</h2>
+          <p>
+            The tech community on platforms like X lit up with reactions. Some praised Anthropic's clapback, noting the audacity of listing Claude Opus as the lead author. Others questioned whether Apple's critique was redundant, as Anthropic's earlier work, like their Biology of an LLM paper, had already explored similar limitations in large language models. One X user remarked that Apple's paper seemed to ignore prior research, calling it a misstep in the ongoing AI discourse.
+          </p>
+
+          <h2 className="text-white text-2xl font-bold mt-8 mb-4">The Deeper Tension</h2>
+          <p>
+            This exchange highlights a deeper tension in the AI race. Apple's skepticism reflects a cautious approach, possibly driven by their focus on integrating AI into resource-constrained devices like iPhones, where efficiency is paramount. Their partnership with Anthropic on a "vibe-coding" platform using Claude Sonnet in Xcode suggests they're not dismissing AI's potential but want it grounded in practical applications. Anthropic, on the other hand, defends the broader potential of reasoning models, advocating for better testing methodologies to showcase their strengths in real-world tasks like coding and analysis.
+          </p>
+
+          <p>
+            The debate underscores a critical point: AI reasoning isn't a one-size-fits-all solution. While Apple warns against overhyping capabilities, Anthropic's response shows that the right conditions can unlock impressive results. As one X post put it, "Context, scale & complexity matter." This back-and-forth is a reminder that the path to powerful AI is as much about rigorous critique as it is about bold innovation.
+          </p>
+
+          <h2 className="text-white text-2xl font-bold mt-8 mb-4">What's Next?</h2>
+          <p>
+            What's next? Expect more sparks as companies refine their models and testing methods. For now, Anthropic's response has kept them in the ring, but Apple's critique might push the industry to rethink how we measure AI's reasoning prowess.
+          </p>
+
+          <h2 className="text-white text-2xl font-bold mt-8 mb-4">Sources</h2>
+          <ul className="list-disc pl-6 space-y-2 text-sm">
+            <li><a href="https://machinelearning.apple.com" target="_blank" rel="noopener noreferrer" className="text-etherion-blue hover:underline">Apple's Paper: Apple Machine Learning Research</a></li>
+            <li><a href="https://arxiv.org/abs/2506.09250" target="_blank" rel="noopener noreferrer" className="text-etherion-blue hover:underline">Anthropic's Response Paper</a></li>
+            <li><a href="https://www.thealgorithmicbridge.com" target="_blank" rel="noopener noreferrer" className="text-etherion-blue hover:underline">The Algorithmic Bridge Article</a></li>
+            <li><a href="https://garymarcus.substack.com" target="_blank" rel="noopener noreferrer" className="text-etherion-blue hover:underline">Gary Marcus Substack</a></li>
+          </ul>
+        </div>
+      </article>
+    );
+  }
+
   if (slug === "meta-scale-ai-bet") {
     return (
       <article className="prose prose-invert max-w-none">
