@@ -1,116 +1,122 @@
 
-import { Link } from "react-router-dom";
 import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { Menu, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const Header = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
 
-  const handleServicesClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    const element = document.querySelector('#services');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    } else {
-      // If not on home page, go to home page first then scroll
-      window.location.href = '/#services';
-    }
-  };
+  const navigation = [
+    { name: "Home", href: "/" },
+    { name: "About", href: "/about" },
+    { name: "Blog", href: "/blog" },
+    { name: "Contact", href: "/get-started" },
+  ];
 
-  const handleContactClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    const element = document.querySelector('footer');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    } else {
-      // If not on home page, go to home page first then scroll
-      window.location.href = '/#footer';
-    }
+  const isActive = (href: string) => {
+    if (href === "/" && location.pathname === "/") return true;
+    if (href !== "/" && location.pathname.startsWith(href)) return true;
+    return false;
   };
 
   return (
-    <header className="flex items-center justify-between whitespace-nowrap border-b border-solid border-etherion-border px-4 sm:px-6 md:px-10 py-3">
-      <Link to="/" className="flex items-center gap-4 text-white">
-        <div className="size-8">
-          <img 
-            src="/lovable-uploads/0bfe7ecb-cc02-4a55-ab15-adb14a2c6263.png" 
-            alt="Etherion Logo" 
-            className="w-full h-full object-contain rounded-lg"
-          />
-        </div>
-        <h2 className="text-white text-lg font-bold leading-tight tracking-[-0.015em]">Etherion</h2>
-      </Link>
-      
-      <div className="hidden md:flex flex-1 justify-end gap-8">
-        <div className="flex items-center gap-9">
-          <Link className="text-white text-sm font-medium leading-normal hover:text-etherion-blue transition-colors" to="/">Home</Link>
-          <button 
-            className="text-white text-sm font-medium leading-normal hover:text-etherion-blue transition-colors" 
-            onClick={handleServicesClick}
-          >
-            Services
-          </button>
-          <Link className="text-white text-sm font-medium leading-normal hover:text-etherion-blue transition-colors" to="/blog">Blog</Link>
-          <Link className="text-white text-sm font-medium leading-normal hover:text-etherion-blue transition-colors" to="/about">About Us</Link>
-          <button 
-            className="text-white text-sm font-medium leading-normal hover:text-etherion-blue transition-colors" 
-            onClick={handleContactClick}
-          >
-            Contact
-          </button>
-        </div>
-        <Link
-          to="/get-started"
-          className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-etherion-blue text-white text-sm font-bold leading-normal tracking-[0.015em]"
-        >
-          <span className="truncate">Get Started</span>
-        </Link>
-      </div>
-      <div className="md:hidden">
-        <button className="text-white" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-          {isMobileMenuOpen ? (
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="18" y1="6" x2="6" y2="18"></line>
-              <line x1="6" y1="6" x2="18" y2="18"></line>
-            </svg>
-          ) : (
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="4" x2="20" y1="12" y2="12"></line>
-              <line x1="4" x2="20" y1="6" y2="6"></line>
-              <line x1="4" x2="20" y1="18" y2="18"></line>
-            </svg>
-          )}
-        </button>
-      </div>
+    <header className="relative z-50 bg-etherion-dark/95 backdrop-blur-sm border-b border-etherion-border">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center py-4">
+          {/* Logo */}
+          <Link to="/" className="flex items-center space-x-2">
+            <div className="w-10 h-10 bg-gradient-to-r from-etherion-blue to-blue-600 rounded-lg flex items-center justify-center">
+              <span className="text-white font-bold text-lg">E</span>
+            </div>
+            <span className="text-white text-xl font-bold">Etherion</span>
+          </Link>
 
-      {/* Mobile Menu */}
-      {isMobileMenuOpen && (
-        <div className="absolute top-16 left-0 right-0 bg-slate-800 md:hidden p-4 border-b border-etherion-border">
-          <nav className="flex flex-col gap-4">
-            <Link className="text-white text-sm font-medium leading-normal hover:text-etherion-blue transition-colors" to="/" onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
-            <button
-              className="text-white text-sm font-medium leading-normal hover:text-etherion-blue transition-colors text-left"
-              onClick={(e) => { handleServicesClick(e); setIsMobileMenuOpen(false); }}
-            >
-              Services
-            </button>
-            <Link className="text-white text-sm font-medium leading-normal hover:text-etherion-blue transition-colors" to="/blog" onClick={() => setIsMobileMenuOpen(false)}>Blog</Link>
-            <Link className="text-white text-sm font-medium leading-normal hover:text-etherion-blue transition-colors" to="/about" onClick={() => setIsMobileMenuOpen(false)}>About Us</Link>
-            <button
-              className="text-white text-sm font-medium leading-normal hover:text-etherion-blue transition-colors text-left"
-              onClick={(e) => { handleContactClick(e); setIsMobileMenuOpen(false); }}
-            >
-              Contact
-            </button>
-            <Link
-              to="/get-started"
-              className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-etherion-blue text-white text-sm font-bold leading-normal tracking-[0.015em] mt-2"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              <span className="truncate">Get Started</span>
-            </Link>
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center space-x-8">
+            {navigation.map((item) => (
+              <Link
+                key={item.name}
+                to={item.href}
+                className={`text-sm font-medium transition-colors ${
+                  isActive(item.href)
+                    ? "text-etherion-blue"
+                    : "text-etherion-text hover:text-white"
+                }`}
+              >
+                {item.name}
+              </Link>
+            ))}
           </nav>
+
+          {/* Desktop CTA */}
+          <div className="hidden md:flex items-center space-x-4">
+            <Link to="/get-started">
+              <Button 
+                variant="outline" 
+                className="border-etherion-blue text-etherion-blue hover:bg-etherion-blue hover:text-white"
+              >
+                Get Started
+              </Button>
+            </Link>
+            <Link to="/detailed-consultation">
+              <Button className="bg-etherion-blue hover:bg-blue-700 text-white">
+                Book Consultation
+              </Button>
+            </Link>
+          </div>
+
+          {/* Mobile menu button */}
+          <div className="md:hidden">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="text-white hover:text-etherion-blue"
+            >
+              {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
+            </Button>
+          </div>
         </div>
-      )}
+
+        {/* Mobile Navigation */}
+        {isMenuOpen && (
+          <div className="md:hidden pb-4 border-t border-etherion-border mt-4 pt-4">
+            <nav className="flex flex-col space-y-4">
+              {navigation.map((item) => (
+                <Link
+                  key={item.name}
+                  to={item.href}
+                  onClick={() => setIsMenuOpen(false)}
+                  className={`text-sm font-medium transition-colors ${
+                    isActive(item.href)
+                      ? "text-etherion-blue"
+                      : "text-etherion-text hover:text-white"
+                  }`}
+                >
+                  {item.name}
+                </Link>
+              ))}
+              <div className="flex flex-col space-y-2 pt-4">
+                <Link to="/get-started" onClick={() => setIsMenuOpen(false)}>
+                  <Button 
+                    variant="outline" 
+                    className="w-full border-etherion-blue text-etherion-blue hover:bg-etherion-blue hover:text-white"
+                  >
+                    Get Started
+                  </Button>
+                </Link>
+                <Link to="/detailed-consultation" onClick={() => setIsMenuOpen(false)}>
+                  <Button className="w-full bg-etherion-blue hover:bg-blue-700 text-white">
+                    Book Consultation
+                  </Button>
+                </Link>
+              </div>
+            </nav>
+          </div>
+        )}
+      </div>
     </header>
   );
 };
