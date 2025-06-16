@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { Calendar, Clock, User } from "lucide-react";
 
@@ -20,7 +19,7 @@ const blogPosts = [
     date: "2025-06-14",
     readTime: "7 min read",
     author: "Etherion Team",
-    image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c",
+    image: "/lovable-uploads/f7da7f7e-fa42-4209-adea-ed584dd72b23.png",
     featured: false
   },
   {
