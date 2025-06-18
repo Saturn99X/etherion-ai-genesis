@@ -1,3 +1,4 @@
+
 import { Calendar, Clock, User } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -29,8 +30,8 @@ const BlogPostContent = ({ slug }: BlogPostContentProps) => {
           </h1>
           <div className="aspect-video bg-cover bg-center rounded-xl overflow-hidden mb-8">
             <img 
-              src="https://images.unsplash.com/photo-1677442136019-21780ecad995" 
-              alt="Open Source AI Competition"
+              src="https://images.unsplash.com/photo-1518770660439-4636190af475" 
+              alt="AI Technology Circuit Board"
               className="w-full h-full object-cover"
             />
           </div>
@@ -49,6 +50,14 @@ const BlogPostContent = ({ slug }: BlogPostContentProps) => {
           <p>
             Open-source AI models are revolutionizing the industry by breaking down the barriers imposed by expensive proprietary systems. Unlike closed-source models that require hefty subscription fees or usage-based pricing, open-source models are freely available, offering unparalleled flexibility and affordability. This accessibility empowers developers, researchers, and businesses to experiment, innovate, and deploy AI solutions without financial strain.
           </p>
+
+          <div className="aspect-video bg-cover bg-center rounded-xl overflow-hidden my-8">
+            <img 
+              src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6" 
+              alt="Programming and Code Development"
+              className="w-full h-full object-cover"
+            />
+          </div>
 
           <h3 className="text-white text-xl font-semibold mt-6 mb-3">DeepSeek: Affordable Powerhouse</h3>
           <p>
@@ -73,6 +82,14 @@ const BlogPostContent = ({ slug }: BlogPostContentProps) => {
             The emergence of high-performing open-source AI models is a direct challenge to the pricing power of big tech companies. With free or ultra-low-cost alternatives available, proprietary model providers like Google, Microsoft, and Amazon can no longer justify exorbitant prices without risking customer attrition. This competitive pressure is reshaping the market in several ways.
           </p>
 
+          <div className="aspect-video bg-cover bg-center rounded-xl overflow-hidden my-8">
+            <img 
+              src="https://images.unsplash.com/photo-1498050108023-c5249f4df085" 
+              alt="Data Analysis and Technology"
+              className="w-full h-full object-cover"
+            />
+          </div>
+
           <h3 className="text-white text-xl font-semibold mt-6 mb-3">Triggering Price Wars</h3>
           <p>
             A notable example occurred in the Chinese AI market following DeepSeek's model release. The ultra-low pricing sparked a price war, forcing giants like Alibaba and Baidu to slash their own AI model prices to retain users. This ripple effect has lowered the cost of AI access across the board, benefiting a wide range of users and demonstrating how open-source models can curb price inflation.
@@ -92,6 +109,14 @@ const BlogPostContent = ({ slug }: BlogPostContentProps) => {
           <p>
             Let's ground this discussion in concrete examples and data to illustrate the transformative power of open-source AI models.
           </p>
+
+          <div className="aspect-video bg-cover bg-center rounded-xl overflow-hidden my-8">
+            <img 
+              src="https://images.unsplash.com/photo-1500673922987-e212871fec22" 
+              alt="Data Visualization and Analytics"
+              className="w-full h-full object-cover"
+            />
+          </div>
 
           <h3 className="text-white text-xl font-semibold mt-6 mb-3">Cost Comparison</h3>
           <p>
@@ -132,6 +157,14 @@ const BlogPostContent = ({ slug }: BlogPostContentProps) => {
           <p>
             The momentum behind open-source AI models shows no signs of slowing. As these models continue to evolve, they're likely to exert even greater influence on the industry. Here's what we can expect:
           </p>
+
+          <div className="aspect-video bg-cover bg-center rounded-xl overflow-hidden my-8">
+            <img 
+              src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b" 
+              alt="Future of Technology and Innovation"
+              className="w-full h-full object-cover"
+            />
+          </div>
 
           <h3 className="text-white text-xl font-semibold mt-6 mb-3">Pricing Pressure Intensifies</h3>
           <p>
