@@ -4,6 +4,16 @@ import { Calendar, Clock, User } from "lucide-react";
 
 const blogPosts = [
   {
+    id: "open-source-ai-pressure-big-tech",
+    title: "How Open-Source AI Models Like Qwen, DeepSeek, and Tencent Are Pressuring Big Tech Pricing Strategies",
+    excerpt: "The AI industry is experiencing a seismic shift as open-source models from companies like Alibaba, DeepSeek, and Tencent challenge the pricing power of big tech giants, making advanced AI accessible to all.",
+    date: "2025-06-18",
+    readTime: "15 min read",
+    author: "Etherion Team",
+    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995",
+    featured: true
+  },
+  {
     id: "google-ai-dominance-2025",
     title: "Google's AI Dominance: A Comprehensive Look at Recent Breakthroughs",
     excerpt: "From topping the LMarena leaderboard to unveiling cutting-edge projects at Google I/O 2025, Google's AI advancements have set new standards for intelligence, reasoning, and multimodal capabilities.",
@@ -11,7 +21,7 @@ const blogPosts = [
     readTime: "12 min read",
     author: "Etherion Team",
     image: "https://images.unsplash.com/photo-1573804633927-bfcbcd909acd",
-    featured: true
+    featured: false
   },
   {
     id: "meta-scale-ai-bet",
