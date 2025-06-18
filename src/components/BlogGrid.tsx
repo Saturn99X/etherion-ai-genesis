@@ -10,7 +10,7 @@ const blogPosts = [
     date: "2025-06-18",
     readTime: "15 min read",
     author: "Etherion Team",
-    image: "https://images.unsplash.com/photo-1518770660439-4636190af475",
+    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995",
     featured: true
   },
   {
