@@ -29,8 +29,8 @@ const BlogPostContent = ({ slug }: BlogPostContentProps) => {
           </h1>
           <div className="aspect-video bg-cover bg-center rounded-xl overflow-hidden mb-8">
             <img 
-              src="https://images.unsplash.com/photo-1677442136019-21780ecad995" 
-              alt="Open Source AI Competition"
+              src="/lovable-uploads/5ec8dc7a-f7d8-4123-95d0-3e529af2e12a.png" 
+              alt="Open Source AI Competition - DeepSeek and Qwen"
               className="w-full h-full object-cover"
             />
           </div>

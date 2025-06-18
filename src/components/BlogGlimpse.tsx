@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { BookOpen, ArrowRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
@@ -11,7 +10,7 @@ const BlogGlimpse = () => {
       title: "How Open-Source AI Models Like Qwen, DeepSeek, and Tencent Are Pressuring Big Tech Pricing Strategies",
       excerpt: "The AI industry is experiencing a seismic shift as open-source models from companies like Alibaba, DeepSeek, and Tencent challenge the pricing power of big tech giants, making advanced AI accessible to all.",
       readTime: "15 min read",
-      image: "https://images.unsplash.com/photo-1677442136019-21780ecad995",
+      image: "/lovable-uploads/5ec8dc7a-f7d8-4123-95d0-3e529af2e12a.png",
       featured: true
     },
     {
