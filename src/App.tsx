@@ -13,6 +13,7 @@ import ComingSoon from "./pages/ComingSoon";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
+import JoinTheRevolution from "./pages/JoinTheRevolution";
 
 const queryClient = new QueryClient();
 
@@ -31,6 +32,7 @@ const App = () => (
           <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/coming-soon" element={<ComingSoon />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/join-the-revolution" element={<JoinTheRevolution />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

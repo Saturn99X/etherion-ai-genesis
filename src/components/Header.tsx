@@ -58,12 +58,20 @@ const Header = () => {
             Contact
           </button>
         </div>
-        <Link
-          to="/get-started"
-          className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-etherion-blue text-white text-sm font-bold leading-normal tracking-[0.015em]"
-        >
-          <span className="truncate">Get Started</span>
-        </Link>
+        <div className="flex items-center gap-3">
+          <Link
+            to="/get-started"
+            className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-etherion-darkBlue border border-etherion-border text-white text-sm font-medium leading-normal tracking-[0.015em] hover:bg-etherion-blue transition-colors"
+          >
+            <span className="truncate">Get Started</span>
+          </Link>
+          <Link
+            to="/join-the-revolution"
+            className="flex min-w-[120px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-etherion-blue text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-blue-700 transition-colors"
+          >
+            <span className="truncate">Join Revolution</span>
+          </Link>
+        </div>
       </div>
       <div className="md:hidden">
         <button className="text-white" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
@@ -101,13 +109,22 @@ const Header = () => {
             >
               Contact
             </button>
-            <Link
-              to="/get-started"
-              className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-etherion-blue text-white text-sm font-bold leading-normal tracking-[0.015em] mt-2"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              <span className="truncate">Get Started</span>
-            </Link>
+            <div className="flex flex-col gap-2 mt-2">
+              <Link
+                to="/get-started"
+                className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-etherion-darkBlue border border-etherion-border text-white text-sm font-medium leading-normal tracking-[0.015em]"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                <span className="truncate">Get Started</span>
+              </Link>
+              <Link
+                to="/join-the-revolution"
+                className="flex min-w-[120px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-etherion-blue text-white text-sm font-bold leading-normal tracking-[0.015em]"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                <span className="truncate">Join Revolution</span>
+              </Link>
+            </div>
           </nav>
         </div>
       )}
