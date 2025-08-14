@@ -24,15 +24,10 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/get-started" element={<GetStarted />} />
-          <Route path="/detailed-consultation" element={<DetailedConsultation />} />
-          <Route path="/about" element={<About />} />
+          <Route path="/" element={<JoinTheRevolution />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
-          <Route path="/coming-soon" element={<ComingSoon />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-          <Route path="/join-the-revolution" element={<JoinTheRevolution />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
