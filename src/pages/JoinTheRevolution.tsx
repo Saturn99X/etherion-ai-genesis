@@ -11,7 +11,7 @@ import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 
 // Import all the agent illustrations
-import heroNetwork from "@/assets/hero-network.png";
+import heroNetwork from "@/assets/business-leaders-scaled.png";
 import financialAnalyst from "@/assets/financial-analyst.png";
 import ecommerceStrategist from "@/assets/ecommerce-strategist.png";
 import threadsAgent from "@/assets/threads-agent.png";
