@@ -37,7 +37,7 @@ const Header = () => {
             className="w-full h-full object-contain"
           />
         </div>
-        <h2 className="text-white text-lg font-bold leading-tight tracking-[-0.015em]">EtherionAI</h2>
+        <h2 className="text-white text-lg font-bold leading-tight tracking-[-0.015em]">Etherion</h2>
       </Link>
       
       <div className="hidden md:flex flex-1 justify-end gap-8">
