@@ -9,6 +9,11 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Card, CardContent } from "@/components/ui/card";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
+import {
+  FunctionsHttpError,
+  FunctionsRelayError,
+  FunctionsFetchError,
+} from "@supabase/supabase-js";
 
 // Import all the agent illustrations
 import heroNetwork from "@/assets/business-leaders-scaled.jpg";
@@ -46,11 +51,31 @@ const JoinTheRevolution = () => {
       if (error) throw error;
 
       setIsSubmitted(true);
-      toast.success("Welcome to the revolution! Check your email for confirmation.");
-    } catch (error) {
+      toast.success(
+        "Welcome to the revolution! Check your email for confirmation."
+      );
+    } catch (error: any) {
       console.error("Error submitting waitlist:", error);
-      const errorMessage = error instanceof Error ? error.message : "Something went wrong. Please try again.";
-      toast.error(errorMessage);
+
+      if (error instanceof FunctionsHttpError) {
+        try {
+          const errorMessage = await error.context.json();
+          if (errorMessage && errorMessage.error) {
+            toast.error(errorMessage.error);
+          } else {
+            toast.error("An unexpected error occurred. Please try again.");
+          }
+        } catch (e) {
+          toast.error("An unexpected error occurred. Please try again.");
+        }
+      } else if (error instanceof FunctionsRelayError) {
+        toast.error("Network error. Please check your connection and try again.");
+      } else if (error instanceof FunctionsFetchError) {
+        toast.error("Could not connect to the server. Please try again later.");
+      } else {
+        toast.error("An unexpected error occurred. Please try again.");
+      }
+        
     } finally {
       setIsSubmitting(false);
     }
