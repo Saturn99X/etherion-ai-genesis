@@ -25,7 +25,7 @@ const handler = async (req: Request): Promise<Response> => {
 
     // Send welcome email to the user
     const emailResponse = await resend.emails.send({
-      from: "EtherionAI <onboarding@resend.dev>",
+      from: "Etherion <contact@etherionai.com>",
       to: [email],
       subject: "Welcome to the Revolution! 🚀",
       html: `
