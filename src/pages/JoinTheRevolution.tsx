@@ -222,6 +222,10 @@ const JoinTheRevolution = () => {
                 </Card>
               ))}
             </div>
+            
+            <div className="text-center mt-12">
+              <p className="text-2xl md:text-3xl font-bold text-slate-400">And Many More...</p>
+            </div>
           </div>
         </section>
 
