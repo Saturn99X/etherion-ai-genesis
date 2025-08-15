@@ -49,7 +49,8 @@ const JoinTheRevolution = () => {
       toast.success("Welcome to the revolution! Check your email for confirmation.");
     } catch (error) {
       console.error("Error submitting waitlist:", error);
-      toast.error("Something went wrong. Please try again.");
+      const errorMessage = error instanceof Error ? error.message : "Something went wrong. Please try again.";
+      toast.error(errorMessage);
     } finally {
       setIsSubmitting(false);
     }
