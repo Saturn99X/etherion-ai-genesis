@@ -10,7 +10,7 @@ const PrivacyPolicy: React.FC = () => {
         <p>Last Updated: {lastUpdatedDate}</p>
 
         <h2>1. Introduction</h2>
-        <p>Welcome to Etherion AI ("we," "us," or "our"). We are committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website https://etherion.ai, interact with our advertisements (such as on LinkedIn), or use our services.</p>
+        <p>Welcome to Etherion AI ("we," "us," or "our"). We are committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website https://www.etherionai.com, interact with our advertisements (such as on LinkedIn), or use our services.</p>
 
         <h2>2. Information We Collect</h2>
         <p>We may collect personal information that you voluntarily provide to us when you express an interest in obtaining information about us or our products and services, when you participate in activities on the website or otherwise when you contact us.</p>
@@ -72,8 +72,8 @@ const PrivacyPolicy: React.FC = () => {
         <h2>10. Contact Us</h2>
         <p>If you have any questions about this Privacy Policy, You can contact us:</p>
         <ul>
-          <li>By email: privacy@etherion.ai</li>
-          <li>By visiting this page on our website: https://etherion.ai/contact</li>
+          <li>By email: privacy@etherionai.com</li>
+          <li>By visiting this page on our website: https://www.etherionai.com/contact</li>
         </ul>
       </article>
     </div>
