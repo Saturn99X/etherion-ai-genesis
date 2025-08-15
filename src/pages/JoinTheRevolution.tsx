@@ -229,6 +229,50 @@ const JoinTheRevolution = () => {
           </div>
         </section>
 
+        {/* RAG Alignment Section */}
+        <section className="px-4 md:px-10 lg:px-40 py-16">
+          <div className="max-w-6xl mx-auto">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div>
+                <img 
+                  src="/lovable-uploads/45694d25-b5d7-4362-bb7f-8d47dea8dbea.png" 
+                  alt="RAG Technology Data Streams" 
+                  className="w-full rounded-lg"
+                />
+              </div>
+              
+              <div>
+                <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+                  Perfectly <span className="text-etherion-blue">Aligned</span> with Your Business
+                </h2>
+                
+                <p className="text-xl text-slate-300 mb-6">
+                  Every agent in your digital workforce is powered by advanced RAG (Retrieval Augmented Generation) technology, ensuring they have instant access to your knowledge base.
+                </p>
+                
+                <p className="text-lg text-slate-400 mb-8">
+                  Your agents don't just follow generic instructions—they understand your business context, processes, and goals because they're trained on your data. This means every decision, every action, and every output is perfectly aligned with your unique business requirements.
+                </p>
+                
+                <div className="space-y-4">
+                  <div className="flex items-start space-x-3">
+                    <div className="w-2 h-2 bg-etherion-blue rounded-full mt-2 flex-shrink-0"></div>
+                    <p className="text-slate-300">Instant access to your company's knowledge base</p>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <div className="w-2 h-2 bg-etherion-blue rounded-full mt-2 flex-shrink-0"></div>
+                    <p className="text-slate-300">Context-aware responses based on your data</p>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <div className="w-2 h-2 bg-etherion-blue rounded-full mt-2 flex-shrink-0"></div>
+                    <p className="text-slate-300">Continuously learning from your business processes</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Final CTA Section */}
         <section className="px-4 md:px-10 lg:px-40 py-16 bg-slate-900">
           <div className="max-w-4xl mx-auto text-center">
