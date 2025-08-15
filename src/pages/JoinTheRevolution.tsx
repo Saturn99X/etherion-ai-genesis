@@ -56,6 +56,7 @@ const JoinTheRevolution = () => {
       );
     } catch (error: any) {
       console.error("Error submitting waitlist:", error);
+
       if (error instanceof FunctionsHttpError) {
         try {
           const errorMessage = await error.context.json();
@@ -74,6 +75,7 @@ const JoinTheRevolution = () => {
       } else {
         toast.error("An unexpected error occurred. Please try again.");
       }
+        
     } finally {
       setIsSubmitting(false);
     }

@@ -52,6 +52,8 @@ const handler = async (req: Request): Promise<Response> => {
     }
 
     return new Response(JSON.stringify({ success: true }), {
+      
+    return new Response(JSON.stringify({ success: true, message: "Email collected." }), {
       status: 200,
       headers: {
         "Content-Type": "application/json",
@@ -70,4 +72,4 @@ const handler = async (req: Request): Promise<Response> => {
   }
 }
 
-serve(handler)
+serve(handler);
