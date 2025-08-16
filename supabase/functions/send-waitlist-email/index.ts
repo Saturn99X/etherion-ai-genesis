@@ -66,7 +66,7 @@ const handler = async (req: Request): Promise<Response> => {
         await resend.emails.send({
           from: "EtherionAI <contact@etherionai.com>",
           to: [email],
-          subject: "You're on the list! Welcome to the EtherionAI Revolution.",
+          subject: "You're on the list! Welcome to the Etherion Revolution.",
           html: `
             <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background-color: #0f172a; color: #cbd5e1; padding: 40px 20px; border-radius: 12px; border: 1px solid #334155;">
               <div style="text-align: center; margin-bottom: 30px;">
@@ -77,7 +77,7 @@ const handler = async (req: Request): Promise<Response> => {
 
               <div style="background-color: #1e293b; padding: 30px; border-radius: 8px;">
                 <p style="font-size: 16px; line-height: 1.6;">
-                  Thank you for joining the waitlist for EtherionAI.
+                  Thank you for joining the waitlist for Etherion.
                 </p>
                 <p style="font-size: 16px; line-height: 1.6;">
                   We're not just building another tool; we're assembling a new way to work, powered by a team of autonomous AI agents ready to execute your business goals.
@@ -89,7 +89,7 @@ const handler = async (req: Request): Promise<Response> => {
 
               <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #334155;">
                 <p style="color: #64748b; font-size: 14px; margin: 0;">
-                  The EtherionAI Team
+                  The Etherion Team
                 </p>
               </div>
             </div>
