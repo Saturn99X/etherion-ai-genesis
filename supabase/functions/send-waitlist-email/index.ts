@@ -64,7 +64,7 @@ const handler = async (req: Request): Promise<Response> => {
       } else {
         const resend = new Resend(resendApiKey);
         await resend.emails.send({
-          from: "EtherionAI <onboarding@resend.dev>",
+          from: "EtherionAI <contact@etherionai.com>",
           to: [email],
           subject: "You're on the list! Welcome to the EtherionAI Revolution.",
           html: `
