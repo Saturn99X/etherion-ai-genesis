@@ -3,7 +3,7 @@ import { Mail, CheckCircle } from "lucide-react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import MouseGlow from "../components/MouseGlow";
-import TypewriterText from "../components/TypewriterText";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -161,34 +161,18 @@ const JoinTheRevolution = () => {
             </div>
             
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
-              <TypewriterText 
-                text="The Wait is Over."
-                className="block text-etherion-blue"
-                delay={500}
-              />
-              <TypewriterText 
-                text="Your Autonomous Digital"
-                className="block"
-                delay={2000}
-              />
-              <TypewriterText 
-                text="Workforce is Ready."
-                className="block"
-                delay={3500}
-              />
+              <span className="block text-etherion-blue">The Wait is Over.</span>
+              <span className="block">Your Autonomous Digital</span>
+              <span className="block">Workforce is Ready.</span>
             </h1>
             
-            <TypewriterText 
-              text="Stop Managing Tasks. Start Directing Outcomes."
-              className="text-xl md:text-2xl text-slate-300 mb-4 max-w-4xl mx-auto"
-              delay={5000}
-            />
+            <p className="text-xl md:text-2xl text-slate-300 mb-4 max-w-4xl mx-auto">
+              Stop Managing Tasks. Start Directing Outcomes.
+            </p>
             
-            <TypewriterText 
-              text="EtherionAI isn't another tool. It's a single, intelligent platform that understands your goals and assembles a team of expert AI agents to execute them. Stop micromanaging. Start directing."
-              className="text-lg text-slate-400 mb-12 max-w-3xl mx-auto"
-              delay={6500}
-            />
+            <p className="text-lg text-slate-400 mb-12 max-w-3xl mx-auto">
+              EtherionAI isn't another tool. It's a single, intelligent platform that understands your goals and assembles a team of expert AI agents to execute them. Stop micromanaging. Start directing.
+            </p>
 
             {!isSubmitted ? (
               <form onSubmit={handleSubmit} className="max-w-md mx-auto space-y-4">
@@ -240,11 +224,9 @@ const JoinTheRevolution = () => {
         {/* Meet Your Team Section */}
         <section className="px-4 md:px-10 lg:px-40 py-16">
           <div className="max-w-6xl mx-auto">
-            <TypewriterText 
-              text="Meet Your Digital Team"
-              className="text-4xl md:text-5xl font-bold text-white text-center mb-16"
-              delay={0}
-            />
+            <h2 className="text-4xl md:text-5xl font-bold text-white text-center mb-16">
+              Meet Your Digital Team
+            </h2>
             
             <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
               {agents.map((agent, index) => (
@@ -258,32 +240,24 @@ const JoinTheRevolution = () => {
                       />
                     </div>
                     
-                    <TypewriterText 
-                      text={agent.title}
-                      className="text-lg md:text-xl font-bold text-white mb-2 md:mb-3"
-                      delay={0}
-                    />
-                    <TypewriterText 
-                      text={agent.headline}
-                      className="text-base md:text-lg font-semibold text-etherion-blue mb-3 md:mb-4"
-                      delay={500}
-                    />
-                    <TypewriterText 
-                      text={agent.description}
-                      className="text-sm md:text-base text-slate-300 leading-relaxed"
-                      delay={1000}
-                    />
+                    <h3 className="text-lg md:text-xl font-bold text-white mb-2 md:mb-3">
+                      {agent.title}
+                    </h3>
+                    <h4 className="text-base md:text-lg font-semibold text-etherion-blue mb-3 md:mb-4">
+                      {agent.headline}
+                    </h4>
+                    <p className="text-sm md:text-base text-slate-300 leading-relaxed">
+                      {agent.description}
+                    </p>
                   </CardContent>
                 </Card>
               ))}
             </div>
             
             <div className="text-center mt-12">
-              <TypewriterText 
-                text="And Many More..."
-                className="text-2xl md:text-3xl font-bold text-slate-400"
-                delay={0}
-              />
+              <p className="text-2xl md:text-3xl font-bold text-slate-400">
+                And Many More...
+              </p>
             </div>
           </div>
         </section>
@@ -302,49 +276,35 @@ const JoinTheRevolution = () => {
               
               <div>
                 <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-                  <TypewriterText 
-                    text="Perfectly Aligned with Your Business"
-                    className="inline"
-                    delay={0}
-                  />
+                  Perfectly Aligned with Your Business
                 </h2>
                 
-                <TypewriterText 
-                  text="Every agent in your digital workforce is powered by advanced RAG (Retrieval Augmented Generation) technology, ensuring they have instant access to your knowledge base."
-                  className="text-xl text-slate-300 mb-6"
-                  delay={1000}
-                />
+                <p className="text-xl text-slate-300 mb-6">
+                  Every agent in your digital workforce is powered by advanced RAG (Retrieval Augmented Generation) technology, ensuring they have instant access to your knowledge base.
+                </p>
                 
-                <TypewriterText 
-                  text="Your agents don't just follow generic instructions—they understand your business context, processes, and goals because they're trained on your data. This means every decision, every action, and every output is perfectly aligned with your unique business requirements."
-                  className="text-lg text-slate-400 mb-8"
-                  delay={2500}
-                />
+                <p className="text-lg text-slate-400 mb-8">
+                  Your agents don't just follow generic instructions—they understand your business context, processes, and goals because they're trained on your data. This means every decision, every action, and every output is perfectly aligned with your unique business requirements.
+                </p>
                 
                 <div className="space-y-4">
                   <div className="flex items-start space-x-3">
                     <div className="w-2 h-2 bg-etherion-blue rounded-full mt-2 flex-shrink-0"></div>
-                    <TypewriterText 
-                      text="Instant access to your company's knowledge base"
-                      className="text-slate-300"
-                      delay={4000}
-                    />
+                    <p className="text-slate-300">
+                      Instant access to your company's knowledge base
+                    </p>
                   </div>
                   <div className="flex items-start space-x-3">
                     <div className="w-2 h-2 bg-etherion-blue rounded-full mt-2 flex-shrink-0"></div>
-                    <TypewriterText 
-                      text="Context-aware responses based on your data"
-                      className="text-slate-300"
-                      delay={4500}
-                    />
+                    <p className="text-slate-300">
+                      Context-aware responses based on your data
+                    </p>
                   </div>
                   <div className="flex items-start space-x-3">
                     <div className="w-2 h-2 bg-etherion-blue rounded-full mt-2 flex-shrink-0"></div>
-                    <TypewriterText 
-                      text="Continuously learning from your business processes"
-                      className="text-slate-300"
-                      delay={5000}
-                    />
+                    <p className="text-slate-300">
+                      Continuously learning from your business processes
+                    </p>
                   </div>
                 </div>
               </div>
@@ -358,58 +318,44 @@ const JoinTheRevolution = () => {
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-                  <TypewriterText 
-                    text="The Orchestrator: Your Strategic Command Center"
-                    className="inline"
-                    delay={0}
-                  />
+                  The Orchestrator: Your Strategic Command Center
                 </h2>
                 
-                <TypewriterText 
-                  text="While your agents handle the execution, the Orchestrator manages the entire workflow with intelligent precision."
-                  className="text-xl text-slate-300 mb-6"
-                  delay={1000}
-                />
+                <p className="text-xl text-slate-300 mb-6">
+                  While your agents handle the execution, the Orchestrator manages the entire workflow with intelligent precision.
+                </p>
                 
-                <TypewriterText 
-                  text="Think of it as your strategic command center that understands your goals, analyzes requirements, and automatically assigns the right combination of agents to deliver results. No manual coordination needed—just set your objective and watch your digital workforce execute flawlessly."
-                  className="text-lg text-slate-400 mb-8"
-                  delay={2500}
-                />
+                <p className="text-lg text-slate-400 mb-8">
+                  Think of it as your strategic command center that understands your goals, analyzes requirements, and automatically assigns the right combination of agents to deliver results. No manual coordination needed—just set your objective and watch your digital workforce execute flawlessly.
+                </p>
                 
                 <div className="space-y-4">
                   <div className="flex items-start space-x-3">
                     <div className="w-2 h-2 bg-etherion-blue rounded-full mt-2 flex-shrink-0"></div>
-                    <TypewriterText 
-                      text="Intelligent task decomposition and agent assignment"
-                      className="text-slate-300"
-                      delay={4000}
-                    />
+                    <p className="text-slate-300">
+                      Intelligent task decomposition and agent assignment
+                    </p>
                   </div>
                   <div className="flex items-start space-x-3">
                     <div className="w-2 h-2 bg-etherion-blue rounded-full mt-2 flex-shrink-0"></div>
-                    <TypewriterText 
-                      text="Real-time workflow optimization and coordination"
-                      className="text-slate-300"
-                      delay={4500}
-                    />
+                    <p className="text-slate-300">
+                      Real-time workflow optimization and coordination
+                    </p>
                   </div>
                   <div className="flex items-start space-x-3">
                     <div className="w-2 h-2 bg-etherion-blue rounded-full mt-2 flex-shrink-0"></div>
-                    <TypewriterText 
-                      text="Seamless inter-agent communication and data flow"
-                      className="text-slate-300"
-                      delay={5000}
-                    />
+                    <p className="text-slate-300">
+                      Seamless inter-agent communication and data flow
+                    </p>
                   </div>
                 </div>
               </div>
               
-              <div>
+              <div className="flex justify-center">
                 <img 
                   src="/lovable-uploads/08121b28-2518-40b2-987a-d8bc5fec2c6b.png" 
                   alt="Agent Orchestration Workflow" 
-                  className="w-full rounded-lg"
+                  className="max-w-full h-auto object-contain rounded-lg"
                 />
               </div>
             </div>
@@ -420,18 +366,12 @@ const JoinTheRevolution = () => {
         <section className="px-4 md:px-10 lg:px-40 py-16 bg-slate-900">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              <TypewriterText 
-                text="The Future of Work Isn't Coming. It's Here."
-                className="inline"
-                delay={0}
-              />
+              The Future of Work Isn't Coming. It's Here.
             </h2>
             
-            <TypewriterText 
-              text="Don't get left behind. Secure your spot and be among the first to command a true digital workforce. The platform is ready. Are you?"
-              className="text-xl text-slate-300 mb-12 max-w-3xl mx-auto"
-              delay={1500}
-            />
+            <p className="text-xl text-slate-300 mb-12 max-w-3xl mx-auto">
+              Don't get left behind. Secure your spot and be among the first to command a true digital workforce. The platform is ready. Are you?
+            </p>
 
             {!isSubmitted && (
               <form onSubmit={handleSubmit} className="max-w-md mx-auto space-y-4">
