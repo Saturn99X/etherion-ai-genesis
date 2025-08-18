@@ -30,14 +30,14 @@ const Header = () => {
   return (
     <header className="flex items-center justify-between whitespace-nowrap border-b border-solid border-etherion-border px-4 sm:px-6 md:px-10 py-3">
       <Link to="/" className="flex items-center gap-4 text-white">
-        <div className="size-8">
+        <div className="size-10">
           <img 
-            src="/lovable-uploads/6a5889eb-8090-4cc1-871f-d5f7de142fbf.png" 
+            src="/lovable-uploads/f077e4c0-43fd-47b9-a76a-24b52376a2f4.png" 
             alt="Etherion Logo" 
             className="w-full h-full object-contain"
           />
         </div>
-        <h2 className="text-white text-lg font-bold leading-tight tracking-[-0.015em]">Etherion</h2>
+        <h2 className="text-white text-2xl font-bold leading-tight tracking-[-0.015em]">Etherion</h2>
       </Link>
       
       <div className="hidden md:flex flex-1 justify-end gap-8">
