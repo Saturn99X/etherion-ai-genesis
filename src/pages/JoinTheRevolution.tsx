@@ -22,11 +22,11 @@ import ecommerceStrategist from "@/assets/ecommerce-strategist.png";
 import threadsAgent from "@/assets/threads-agent.png";
 import imagenAgent from "@/assets/imagen-agent.png";
 import clientDiscovery from "@/assets/client-discovery.png";
-import competitorSpy from "@/assets/competitor-spy.png";
-import masterCopywriter from "@/assets/master-copywriter.png";
+import competitorSpy from "/lovable-uploads/e318fea6-c0c3-4959-ab30-974bdf99eaf2.png";
+import masterCopywriter from "/lovable-uploads/84a08674-e755-4913-aa08-b126ff405aee.png";
 import emailCampaignManager from "@/assets/email-campaign-manager.png";
 import seoBlogSuite from "@/assets/seo-blog-suite.png";
-import socialMediaSuite from "@/assets/social-media-suite.png";
+import socialMediaSuite from "/lovable-uploads/77254765-6d79-4c02-a57c-26692c6c3295.png";
 
 const JoinTheRevolution = () => {
   const [email, setEmail] = useState("");
