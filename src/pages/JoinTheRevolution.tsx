@@ -352,6 +352,70 @@ const JoinTheRevolution = () => {
           </div>
         </section>
 
+        {/* Orchestrator Section */}
+        <section className="px-4 md:px-10 lg:px-40 py-16">
+          <div className="max-w-6xl mx-auto">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div>
+                <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+                  <TypewriterText 
+                    text="The Orchestrator: Your Strategic Command Center"
+                    className="inline"
+                    delay={0}
+                  />
+                </h2>
+                
+                <TypewriterText 
+                  text="While your agents handle the execution, the Orchestrator manages the entire workflow with intelligent precision."
+                  className="text-xl text-slate-300 mb-6"
+                  delay={1000}
+                />
+                
+                <TypewriterText 
+                  text="Think of it as your strategic command center that understands your goals, analyzes requirements, and automatically assigns the right combination of agents to deliver results. No manual coordination needed—just set your objective and watch your digital workforce execute flawlessly."
+                  className="text-lg text-slate-400 mb-8"
+                  delay={2500}
+                />
+                
+                <div className="space-y-4">
+                  <div className="flex items-start space-x-3">
+                    <div className="w-2 h-2 bg-etherion-blue rounded-full mt-2 flex-shrink-0"></div>
+                    <TypewriterText 
+                      text="Intelligent task decomposition and agent assignment"
+                      className="text-slate-300"
+                      delay={4000}
+                    />
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <div className="w-2 h-2 bg-etherion-blue rounded-full mt-2 flex-shrink-0"></div>
+                    <TypewriterText 
+                      text="Real-time workflow optimization and coordination"
+                      className="text-slate-300"
+                      delay={4500}
+                    />
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <div className="w-2 h-2 bg-etherion-blue rounded-full mt-2 flex-shrink-0"></div>
+                    <TypewriterText 
+                      text="Seamless inter-agent communication and data flow"
+                      className="text-slate-300"
+                      delay={5000}
+                    />
+                  </div>
+                </div>
+              </div>
+              
+              <div>
+                <img 
+                  src="/lovable-uploads/08121b28-2518-40b2-987a-d8bc5fec2c6b.png" 
+                  alt="Agent Orchestration Workflow" 
+                  className="w-full rounded-lg"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Final CTA Section */}
         <section className="px-4 md:px-10 lg:px-40 py-16 bg-slate-900">
           <div className="max-w-4xl mx-auto text-center">

@@ -6,7 +6,7 @@ interface UseTypewriterOptions {
   startDelay?: number;
 }
 
-export const useTypewriter = ({ text, speed = 50, startDelay = 0 }: UseTypewriterOptions) => {
+export const useTypewriter = ({ text, speed = 10, startDelay = 0 }: UseTypewriterOptions) => {
   const [displayText, setDisplayText] = useState('');
   const [isComplete, setIsComplete] = useState(false);
 
